@@ -1,6 +1,9 @@
-# Local LLM Import / Export
+# offline-llm-knowledge-system
 
 Portable offline knowledge bases for air-gapped and no-internet environments.
+
+Read the full write-up on Medium:
+https://muthuishere.medium.com/offline-llm-knowledge-system-your-docs-their-browser-zero-internet-ded644e94b83
 
 ![Demo](./demo.gif)
 
@@ -75,3 +78,5 @@ Default dev URLs:
 ## Status
 
 Open source MIT project focused on practical offline LLM workflows in the browser.
+
+Built while dogfooding [Huddle](https://github.com/m-agentic-skills/huddle).
