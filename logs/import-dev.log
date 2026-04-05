@@ -1,0 +1,198 @@
+
+> local-llm-import-export@1.0.0 dev
+> vite
+
+Port 5199 is in use, trying another one...
+Port 5200 is in use, trying another one...
+Port 5201 is in use, trying another one...
+
+  VITE v6.4.1  r11:50:00 PM [vite] (client) hmr update /src/import/ChatInterface.tsx
+11:50:00 PM [vite12:45:36 AM [vite] vite.config.ts changed, restarting server...
+12:45:36 AM [vite] server restarted.
+/ImportPage.tsx
+11:50:43 PM [vite] (client) hmr update /src/import/ChatInterface.tsx
+12:45:35 AM [vite] vite.config.ts changed, restarting server...
+12:45:36 AM [vite] vite.config.ts changed, restarting server...
+12:45:36 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+12:45:36 AM [vite] server restarted.
+1:07:11 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:11 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:16 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:36 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:31:56 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:31:56 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:32:08 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:43:13 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:43:30 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:43:41 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:44:02 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:48:52 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:04:05 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:04:51 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:05:00 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:05:39 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:09:33 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:09:39 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:44:25 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:44:53 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:45:22 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:45:36 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:53:26 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:53:33 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:53:33 AM [vite] (client) hmr update /src/pages/ImportPage.tsx
+2:53:33 AM [vite] (client) Pre-transform error: /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/src/import/ChatInterface.tsx: Identifier 'embedQuery' has already been declared. (58:8)
+
+  56 |   }, [messages])
+  57 |
+> 58 |   const embedQuery = useCallback(async (query: string): Promise<number[]> => {
+     |         ^
+  59 |     try {
+  60 |       const { pipeline, env: transformersEnv } = await import('@huggingface/transformers')
+  61 |       // Override ONNX WASM paths to load from local server instead of CDN.
+  Plugin: vite:react-babel
+  File: /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/src/import/ChatInterface.tsx:58:8
+  56 |    }, [messages])
+  57 |  
+  58 |    const embedQuery = useCallback(async (query: string): Promise<number[]> => {
+     |          ^
+  59 |      try {
+  60 |        const { pipeline, env: transformersEnv } = await import('@huggingface/transformers')
+2:53:34 AM [vite] Internal server error: /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/src/import/ChatInterface.tsx: Identifier 'embedQuery' has already been declared. (58:8)
+
+  56 |   }, [messages])
+  57 |
+> 58 |   const embedQuery = useCallback(async (query: string): Promise<number[]> => {
+     |         ^
+  59 |     try {
+  60 |       const { pipeline, env: transformersEnv } = await import('@huggingface/transformers')
+  61 |       // Override ONNX WASM paths to load from local server instead of CDN.
+  Plugin: vite:react-babel
+  File: /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/src/import/ChatInterface.tsx:58:8
+  56 |    }, [messages])
+  57 |  
+  58 |    const embedQuery = useCallback(async (query: string): Promise<number[]> => {
+     |          ^
+  59 |      try {
+  60 |        const { pipeline, env: transformersEnv } = await import('@huggingface/transformers')
+      at constructor (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:1619:19)
+      at TypeScriptScopeHandler.declareName (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:1585:12)
+      at TypeScriptScopeHandler.declareName (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:4880:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:7567:16)
+      at TypeScriptParserMixin.checkIdentifier (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:7563:12)
+      at TypeScriptParserMixin.checkLVal (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:7500:12)
+      at TypeScriptParserMixin.parseVarId (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13412:10)
+      at TypeScriptParserMixin.parseVarId (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9752:11)
+      at TypeScriptParserMixin.parseVar (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13383:12)
+      at TypeScriptParserMixin.parseVarStatement (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13230:10)
+      at TypeScriptParserMixin.parseVarStatement (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9408:31)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12851:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/gensync/index.js:261:32)
+2:53:34 AM [vite] Internal server error: /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/src/import/ChatInterface.tsx: Identifier 'embedQuery' has already been declared. (58:8)
+
+  56 |   }, [messages])
+  57 |
+> 58 |   const embedQuery = useCallback(async (query: string): Promise<number[]> => {
+     |         ^
+  59 |     try {
+  60 |       const { pipeline, env: transformersEnv } = await import('@huggingface/transformers')
+  61 |       // Override ONNX WASM paths to load from local server instead of CDN.
+  Plugin: vite:react-babel
+  File: /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/src/import/ChatInterface.tsx:58:8
+  56 |    }, [messages])
+  57 |  
+  58 |    const embedQuery = useCallback(async (query: string): Promise<number[]> => {
+     |          ^
+  59 |      try {
+  60 |        const { pipeline, env: transformersEnv } = await import('@huggingface/transformers')
+      at constructor (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:365:19)
+      at TypeScriptParserMixin.raise (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:6599:19)
+      at TypeScriptScopeHandler.checkRedeclarationInScope (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:1619:19)
+      at TypeScriptScopeHandler.declareName (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:1585:12)
+      at TypeScriptScopeHandler.declareName (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:4880:11)
+      at TypeScriptParserMixin.declareNameFromIdentifier (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:7567:16)
+      at TypeScriptParserMixin.checkIdentifier (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:7563:12)
+      at TypeScriptParserMixin.checkLVal (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:7500:12)
+      at TypeScriptParserMixin.parseVarId (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13412:10)
+      at TypeScriptParserMixin.parseVarId (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9752:11)
+      at TypeScriptParserMixin.parseVar (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13383:12)
+      at TypeScriptParserMixin.parseVarStatement (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13230:10)
+      at TypeScriptParserMixin.parseVarStatement (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9408:31)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12851:23)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseStatementListItem (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12747:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13316:61)
+      at TypeScriptParserMixin.parseBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseBlock (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13297:10)
+      at TypeScriptParserMixin.parseFunctionBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12100:24)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12086:10)
+      at TypeScriptParserMixin.parseFunctionBodyAndFinish (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9172:18)
+      at /Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13445:12
+      at TypeScriptParserMixin.withSmartMixTopicForbiddingContext (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12403:14)
+      at TypeScriptParserMixin.parseFunction (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13444:10)
+      at TypeScriptParserMixin.parseExportDefaultExpression (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13907:19)
+      at TypeScriptParserMixin.parseExportDefaultExpression (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9402:18)
+      at TypeScriptParserMixin.parseExport (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13828:25)
+      at TypeScriptParserMixin.parseExport (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9385:20)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12878:27)
+      at TypeScriptParserMixin.parseStatementContent (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:9508:18)
+      at TypeScriptParserMixin.parseStatementLike (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12767:17)
+      at TypeScriptParserMixin.parseModuleItem (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12744:17)
+      at TypeScriptParserMixin.parseBlockOrModuleBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13316:36)
+      at TypeScriptParserMixin.parseBlockBody (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:13309:10)
+      at TypeScriptParserMixin.parseProgram (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12622:10)
+      at TypeScriptParserMixin.parseTopLevel (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:12612:25)
+      at TypeScriptParserMixin.parse (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:14488:25)
+      at TypeScriptParserMixin.parse (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:10126:18)
+      at parse (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/parser/lib/index.js:14522:38)
+      at parser (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/parser/index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/transformation/index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/@babel/core/lib/transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (/Users/muthuishere/muthu/gitworkspace/small-llm-workspace/local-llm-import-export/apps/import/node_modules/gensync/index.js:261:32)
+2:53:52 AM [vite] (client) hmr update /src/pages/ImportPage.tsx
+3:10:04 AM [vite] (client) page reload src/workers/embed-query-worker.ts
+3:32:08 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+3:32:26 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+3:32:39 AM [vite] (client) hmr update /src/import/ChatInterface.tsx

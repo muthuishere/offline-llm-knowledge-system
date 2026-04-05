@@ -1,0 +1,1146 @@
+[     205ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/chunk-FD5SMSK5.js?v=02fd6fff:21608
+[   65727ms] [LOG] [Import] Handing zip to unzip-worker: knowledge-basev9.zip (1.54 GB) @ http://localhost:5199/src/import/useImportPipeline.ts:15
+[   67852ms] [LOG] [UnzipWorker] Cached model/mlc-chat-config.json (0.0 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[   68337ms] [LOG] [UnzipWorker] Cached model/tokenizer_config.json (0.0 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[   68851ms] [LOG] [UnzipWorker] Cached model/tensor-cache.json (0.1 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[   69009ms] [LOG] [UnzipWorker] Cached model/tokenizer.model (4.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[   69013ms] [LOG] [UnzipWorker] Cached model/tokenizer.json (17.5 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[   69176ms] [LOG] [UnzipWorker] OPFS: orama-index.json.gz @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69220ms] [LOG] [UnzipWorker] OPFS: chunks.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69229ms] [LOG] [UnzipWorker] OPFS: instructions.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69488ms] [LOG] [UnzipWorker] OPFS: sources/browser-requirements.txt @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69494ms] [LOG] [UnzipWorker] OPFS: sources/architecture.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69496ms] [LOG] [UnzipWorker] OPFS: sources/common-queries.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69497ms] [LOG] [UnzipWorker] OPFS: sources/debugging-guide.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69500ms] [LOG] [UnzipWorker] OPFS: sources/project-overview.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69671ms] [LOG] [UnzipWorker] OPFS: sources/model-reference.docx @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69680ms] [LOG] [UnzipWorker] OPFS: sources/troubleshooting.txt @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   69682ms] [LOG] [UnzipWorker] OPFS: sources/quick-start-guide.pdf @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[   96082ms] [LOG] [UnzipWorker] Cached model/params_shard_0.bin (294.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  100029ms] [LOG] [UnzipWorker] Cached model/params_shard_1.bin (36.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  103841ms] [LOG] [UnzipWorker] Cached model/params_shard_2.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  106836ms] [LOG] [UnzipWorker] Cached model/params_shard_3.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  109726ms] [LOG] [UnzipWorker] Cached model/params_shard_4.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  111383ms] [LOG] [UnzipWorker] Cached model/params_shard_5.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  112220ms] [LOG] [UnzipWorker] Cached model/params_shard_6.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  113673ms] [LOG] [UnzipWorker] Cached model/params_shard_7.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  115210ms] [LOG] [UnzipWorker] Cached model/params_shard_8.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  116097ms] [LOG] [UnzipWorker] Cached model/params_shard_9.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  117932ms] [LOG] [UnzipWorker] Cached model/params_shard_10.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  120962ms] [LOG] [UnzipWorker] Cached model/params_shard_11.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  123228ms] [LOG] [UnzipWorker] Cached model/params_shard_12.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  126442ms] [LOG] [UnzipWorker] Cached model/params_shard_13.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  127878ms] [LOG] [UnzipWorker] Cached model/params_shard_14.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  128967ms] [LOG] [UnzipWorker] Cached model/params_shard_15.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  130418ms] [LOG] [UnzipWorker] Cached model/params_shard_16.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  131642ms] [LOG] [UnzipWorker] Cached model/params_shard_17.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  132502ms] [LOG] [UnzipWorker] Cached model/params_shard_18.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  133647ms] [LOG] [UnzipWorker] Cached model/params_shard_19.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  135074ms] [LOG] [UnzipWorker] Cached model/params_shard_20.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  136399ms] [LOG] [UnzipWorker] Cached model/params_shard_21.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  138058ms] [LOG] [UnzipWorker] Cached model/params_shard_22.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  140333ms] [LOG] [UnzipWorker] Cached model/params_shard_23.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  141212ms] [LOG] [UnzipWorker] Cached model/params_shard_24.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  142569ms] [LOG] [UnzipWorker] Cached model/params_shard_25.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  143996ms] [LOG] [UnzipWorker] Cached model/params_shard_26.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  145054ms] [LOG] [UnzipWorker] Cached model/params_shard_27.bin (31.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  145792ms] [LOG] [UnzipWorker] Cached model/params_shard_28.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  152425ms] [LOG] [UnzipWorker] Cached model/params_shard_29.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  156672ms] [LOG] [UnzipWorker] Cached model/params_shard_30.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  159859ms] [LOG] [UnzipWorker] Cached model/params_shard_31.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  166900ms] [LOG] [UnzipWorker] Cached model/params_shard_32.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  173918ms] [LOG] [UnzipWorker] Cached model/params_shard_33.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  177222ms] [LOG] [UnzipWorker] Cached model/params_shard_34.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  181291ms] [LOG] [UnzipWorker] Cached model/params_shard_35.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  182848ms] [LOG] [UnzipWorker] Cached model/params_shard_36.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  183740ms] [LOG] [UnzipWorker] Cached model/params_shard_37.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  185327ms] [LOG] [UnzipWorker] Cached model/params_shard_38.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  186111ms] [LOG] [UnzipWorker] Cached model/params_shard_39.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  187413ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/0.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[  187421ms] [LOG] [UnzipWorker] Cached model/params_shard_40.bin (31.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  187422ms] [LOG] [UnzipWorker] Cached model/params_shard_41.bin (2.7 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  187456ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/1.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[  187457ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/2.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[  187614ms] [LOG] [UnzipWorker] Cached wasm/gemma-2-2b-it-q4f16_1-ctx4k_cs1k-webgpu.wasm (5.4 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[  188700ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/3.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[  188704ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/4.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[  189459ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/5.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[  189516ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/config.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[  189524ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/tokenizer.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[  189545ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/tokenizer_config.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[  189798ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/onnx/model_quantized.onnx @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[  189821ms] [LOG] [UnzipWorker] transformers-cache restored: https://cdn.jsdelivr.net/npm/onnxruntime-web@1.25.0-dev.20260327-722743c0e2/dist/ort-wasm-simd-threaded.asyncify.mjs @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[  189990ms] [LOG] [UnzipWorker] transformers-cache restored: https://cdn.jsdelivr.net/npm/onnxruntime-web@1.25.0-dev.20260327-722743c0e2/dist/ort-wasm-simd-threaded.asyncify.wasm @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[  189998ms] [LOG] [Import] Loading Orama index from OPFS... @ http://localhost:5199/src/import/useImportPipeline.ts:59
+[  190127ms] [LOG] [Import] Orama index ready. @ http://localhost:5199/src/import/useImportPipeline.ts:87
+[  190148ms] [LOG] [WebLLM] Loading model from pre-populated cache: gemma-2-2b-it-q4f16_1-MLC @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:16
+[  190150ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[  190151ms] [LOG] [WebLLM] Load already in progress, awaiting shared promise @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:12
+[  190151ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[  190154ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[  191024ms] [ERROR] [EmbedQueryWorker] init failed: SyntaxError: Unexpected token '', "       >"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at getModelJSON (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:11400:15)
+    at async loadConfig (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22272:10)
+    at async _PretrainedConfig.from_pretrained (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22751:28)
+    at async get_model_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:24487:12)
+    at async get_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32915:17)
+    at async get_pipeline_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32937:17)
+    at async pipeline2 (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32978:26)
+    at async self.onmessage (http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:10:19) @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:12
+[  197211ms] [LOG] [WebLLM] Start to fetch params 0% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  203596ms] [LOG] [WebLLM] Loading model from cache[1/42]: 282MB loaded. 20% completed, 7 secs elapsed. 20% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  204131ms] [LOG] [WebLLM] Loading model from cache[2/42]: 317MB loaded. 22% completed, 7 secs elapsed. 23% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  204431ms] [LOG] [WebLLM] Loading model from cache[3/42]: 349MB loaded. 24% completed, 8 secs elapsed. 25% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  204609ms] [LOG] [WebLLM] Loading model from cache[4/42]: 369MB loaded. 26% completed, 8 secs elapsed. 26% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  204947ms] [LOG] [WebLLM] Loading model from cache[5/42]: 400MB loaded. 28% completed, 8 secs elapsed. 29% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  205229ms] [LOG] [WebLLM] Loading model from cache[6/42]: 432MB loaded. 30% completed, 9 secs elapsed. 31% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  205418ms] [LOG] [WebLLM] Loading model from cache[7/42]: 452MB loaded. 32% completed, 9 secs elapsed. 32% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  205708ms] [LOG] [WebLLM] Loading model from cache[8/42]: 484MB loaded. 34% completed, 9 secs elapsed. 34% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  206002ms] [LOG] [WebLLM] Loading model from cache[9/42]: 516MB loaded. 36% completed, 9 secs elapsed. 37% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  206184ms] [LOG] [WebLLM] Loading model from cache[10/42]: 536MB loaded. 38% completed, 9 secs elapsed. 38% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  206473ms] [LOG] [WebLLM] Loading model from cache[11/42]: 568MB loaded. 40% completed, 10 secs elapsed. 40% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  206794ms] [LOG] [WebLLM] Loading model from cache[12/42]: 599MB loaded. 42% completed, 10 secs elapsed. 43% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  207060ms] [LOG] [WebLLM] Loading model from cache[13/42]: 620MB loaded. 44% completed, 10 secs elapsed. 44% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  207389ms] [LOG] [WebLLM] Loading model from cache[14/42]: 651MB loaded. 46% completed, 11 secs elapsed. 46% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  207695ms] [LOG] [WebLLM] Loading model from cache[15/42]: 683MB loaded. 48% completed, 11 secs elapsed. 49% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  207910ms] [LOG] [WebLLM] Loading model from cache[16/42]: 703MB loaded. 50% completed, 11 secs elapsed. 50% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  208271ms] [LOG] [WebLLM] Loading model from cache[17/42]: 735MB loaded. 52% completed, 12 secs elapsed. 52% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  208642ms] [LOG] [WebLLM] Loading model from cache[18/42]: 766MB loaded. 54% completed, 12 secs elapsed. 55% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  208851ms] [LOG] [WebLLM] Loading model from cache[19/42]: 787MB loaded. 56% completed, 12 secs elapsed. 56% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  209146ms] [LOG] [WebLLM] Loading model from cache[20/42]: 818MB loaded. 58% completed, 12 secs elapsed. 58% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  209465ms] [LOG] [WebLLM] Loading model from cache[21/42]: 850MB loaded. 60% completed, 13 secs elapsed. 61% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  209641ms] [LOG] [WebLLM] Loading model from cache[22/42]: 870MB loaded. 61% completed, 13 secs elapsed. 62% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  209929ms] [LOG] [WebLLM] Loading model from cache[23/42]: 902MB loaded. 64% completed, 13 secs elapsed. 64% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  210211ms] [LOG] [WebLLM] Loading model from cache[24/42]: 934MB loaded. 66% completed, 14 secs elapsed. 67% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  210400ms] [LOG] [WebLLM] Loading model from cache[25/42]: 954MB loaded. 67% completed, 14 secs elapsed. 68% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  210748ms] [LOG] [WebLLM] Loading model from cache[26/42]: 985MB loaded. 70% completed, 14 secs elapsed. 70% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  211053ms] [LOG] [WebLLM] Loading model from cache[27/42]: 1017MB loaded. 72% completed, 14 secs elapsed. 72% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  211321ms] [LOG] [WebLLM] Loading model from cache[28/42]: 1047MB loaded. 74% completed, 15 secs elapsed. 75% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  211509ms] [LOG] [WebLLM] Loading model from cache[29/42]: 1068MB loaded. 76% completed, 15 secs elapsed. 76% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  211796ms] [LOG] [WebLLM] Loading model from cache[30/42]: 1099MB loaded. 78% completed, 15 secs elapsed. 78% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  212082ms] [LOG] [WebLLM] Loading model from cache[31/42]: 1131MB loaded. 80% completed, 15 secs elapsed. 81% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  212264ms] [LOG] [WebLLM] Loading model from cache[32/42]: 1151MB loaded. 82% completed, 16 secs elapsed. 82% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  212562ms] [LOG] [WebLLM] Loading model from cache[33/42]: 1183MB loaded. 84% completed, 16 secs elapsed. 84% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  212859ms] [LOG] [WebLLM] Loading model from cache[34/42]: 1215MB loaded. 86% completed, 16 secs elapsed. 87% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  213046ms] [LOG] [WebLLM] Loading model from cache[35/42]: 1235MB loaded. 87% completed, 16 secs elapsed. 88% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  213344ms] [LOG] [WebLLM] Loading model from cache[36/42]: 1267MB loaded. 90% completed, 17 secs elapsed. 90% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  213653ms] [LOG] [WebLLM] Loading model from cache[37/42]: 1298MB loaded. 92% completed, 17 secs elapsed. 93% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  213834ms] [LOG] [WebLLM] Loading model from cache[38/42]: 1318MB loaded. 93% completed, 17 secs elapsed. 94% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214147ms] [LOG] [WebLLM] Loading model from cache[39/42]: 1350MB loaded. 96% completed, 17 secs elapsed. 96% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214353ms] [LOG] [WebLLM] Loading model from cache[40/42]: 1370MB loaded. 97% completed, 18 secs elapsed. 98% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214629ms] [LOG] [WebLLM] Loading model from cache[41/42]: 1401MB loaded. 99% completed, 18 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214667ms] [LOG] [WebLLM] Loading model from cache[42/42]: 1403MB loaded. 100% completed, 18 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214919ms] [LOG] [WebLLM] Loading GPU shader modules[88/88]: 100% completed, 1 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214919ms] [LOG] [WebLLM] Finish loading on WebGPU - amd 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[  214920ms] [LOG] [WebLLM] Engine ready (worker) @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:32
+[  214922ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[  214923ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[  379522ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/chunk-FD5SMSK5.js?v=02fd6fff:21608
+[ 1482726ms] [LOG] COOP/COEP Service Worker registered http://localhost:5199/ @ http://localhost:5199/coi-serviceworker.js:1
+[ 1482726ms] [LOG] Reloading page to make use of COOP/COEP Service Worker. @ http://localhost:5199/coi-serviceworker.js:1
+[ 1483162ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/chunk-FD5SMSK5.js?v=02fd6fff:21608
+[ 1483286ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5199/favicon.ico:0
+[ 1487788ms] [LOG] [Import] Handing zip to unzip-worker: knowledge-basev10.zip (1.52 GB) @ http://localhost:5199/src/import/useImportPipeline.ts:15
+[ 1488848ms] [LOG] [UnzipWorker] Cached model/mlc-chat-config.json (0.0 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1488953ms] [LOG] [UnzipWorker] Cached model/tokenizer_config.json (0.0 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1489019ms] [LOG] [UnzipWorker] Cached model/tensor-cache.json (0.1 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1489023ms] [LOG] [UnzipWorker] Cached model/tokenizer.model (4.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1489211ms] [LOG] [UnzipWorker] OPFS: orama-index.json.gz @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489213ms] [LOG] [UnzipWorker] OPFS: chunks.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489282ms] [LOG] [UnzipWorker] OPFS: instructions.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489283ms] [LOG] [UnzipWorker] Cached model/tokenizer.json (17.5 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1489289ms] [LOG] [UnzipWorker] OPFS: sources/browser-requirements.txt @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489354ms] [LOG] [UnzipWorker] OPFS: sources/common-queries.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489354ms] [LOG] [UnzipWorker] OPFS: sources/project-overview.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489355ms] [LOG] [UnzipWorker] OPFS: sources/quick-start-guide.pdf @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489355ms] [LOG] [UnzipWorker] OPFS: sources/troubleshooting.txt @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489355ms] [LOG] [UnzipWorker] OPFS: sources/model-reference.docx @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489356ms] [LOG] [UnzipWorker] OPFS: sources/debugging-guide.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1489356ms] [LOG] [UnzipWorker] OPFS: sources/architecture.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 1498838ms] [LOG] [UnzipWorker] Cached model/params_shard_0.bin (294.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1498920ms] [LOG] [UnzipWorker] Cached model/params_shard_1.bin (36.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1500196ms] [LOG] [UnzipWorker] Cached model/params_shard_2.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1501016ms] [LOG] [UnzipWorker] Cached model/params_shard_3.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1502045ms] [LOG] [UnzipWorker] Cached model/params_shard_4.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1503164ms] [LOG] [UnzipWorker] Cached model/params_shard_5.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1503878ms] [LOG] [UnzipWorker] Cached model/params_shard_6.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1505345ms] [LOG] [UnzipWorker] Cached model/params_shard_7.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1506541ms] [LOG] [UnzipWorker] Cached model/params_shard_8.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1507113ms] [LOG] [UnzipWorker] Cached model/params_shard_9.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1507986ms] [LOG] [UnzipWorker] Cached model/params_shard_10.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1508881ms] [LOG] [UnzipWorker] Cached model/params_shard_11.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1509481ms] [LOG] [UnzipWorker] Cached model/params_shard_12.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1510367ms] [LOG] [UnzipWorker] Cached model/params_shard_13.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1511248ms] [LOG] [UnzipWorker] Cached model/params_shard_14.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1511910ms] [LOG] [UnzipWorker] Cached model/params_shard_15.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1512954ms] [LOG] [UnzipWorker] Cached model/params_shard_16.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1513837ms] [LOG] [UnzipWorker] Cached model/params_shard_17.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1514503ms] [LOG] [UnzipWorker] Cached model/params_shard_18.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1515467ms] [LOG] [UnzipWorker] Cached model/params_shard_19.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1516523ms] [LOG] [UnzipWorker] Cached model/params_shard_20.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1517100ms] [LOG] [UnzipWorker] Cached model/params_shard_21.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1518254ms] [LOG] [UnzipWorker] Cached model/params_shard_22.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1519462ms] [LOG] [UnzipWorker] Cached model/params_shard_23.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1519999ms] [LOG] [UnzipWorker] Cached model/params_shard_24.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1521143ms] [LOG] [UnzipWorker] Cached model/params_shard_25.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1522134ms] [LOG] [UnzipWorker] Cached model/params_shard_26.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1523064ms] [LOG] [UnzipWorker] Cached model/params_shard_27.bin (31.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1523633ms] [LOG] [UnzipWorker] Cached model/params_shard_28.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1524598ms] [LOG] [UnzipWorker] Cached model/params_shard_29.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1525516ms] [LOG] [UnzipWorker] Cached model/params_shard_30.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1526086ms] [LOG] [UnzipWorker] Cached model/params_shard_31.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1527046ms] [LOG] [UnzipWorker] Cached model/params_shard_32.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1527955ms] [LOG] [UnzipWorker] Cached model/params_shard_33.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1528538ms] [LOG] [UnzipWorker] Cached model/params_shard_34.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1529547ms] [LOG] [UnzipWorker] Cached model/params_shard_35.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1530473ms] [LOG] [UnzipWorker] Cached model/params_shard_36.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1531016ms] [LOG] [UnzipWorker] Cached model/params_shard_37.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1531952ms] [LOG] [UnzipWorker] Cached model/params_shard_38.bin (33.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1532635ms] [LOG] [UnzipWorker] Cached model/params_shard_39.bin (21.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1533964ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/0.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[ 1533983ms] [LOG] [UnzipWorker] Cached model/params_shard_40.bin (31.9 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1534018ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/1.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[ 1534020ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/2.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[ 1534068ms] [LOG] [UnzipWorker] Cached model/params_shard_41.bin (2.7 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1534153ms] [LOG] [UnzipWorker] Cached wasm/gemma-2-2b-it-q4f16_1-ctx4k_cs1k-webgpu.wasm (5.4 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 1535055ms] [LOG] [UnzipWorker] embed-cache bin collected: embed-cache/3.bin @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:98
+[ 1535246ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/config.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[ 1535268ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/tokenizer.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[ 1535297ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/tokenizer_config.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[ 1535597ms] [LOG] [UnzipWorker] transformers-cache restored: https://huggingface.co/Xenova/bge-small-en-v1.5/resolve/main/onnx/model_quantized.onnx @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:91
+[ 1535604ms] [LOG] [Import] Loading Orama index from OPFS... @ http://localhost:5199/src/import/useImportPipeline.ts:59
+[ 1535718ms] [LOG] [Import] Orama index ready. @ http://localhost:5199/src/import/useImportPipeline.ts:87
+[ 1535735ms] [LOG] [WebLLM] Loading model from pre-populated cache: gemma-2-2b-it-q4f16_1-MLC @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:16
+[ 1535736ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1535736ms] [LOG] [WebLLM] Load already in progress, awaiting shared promise @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:12
+[ 1535736ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1535738ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1537017ms] [LOG] [EmbedQueryWorker] ONNX WASM path → /ort-wasm/ @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:11
+[ 1537120ms] [ERROR] [EmbedQueryWorker] init failed: SyntaxError: Unexpected token ' ', "        "... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at getModelJSON (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:11400:15)
+    at async loadConfig (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22272:10)
+    at async _PretrainedConfig.from_pretrained (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22751:28)
+    at async get_model_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:24487:12)
+    at async get_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32915:17)
+    at async get_pipeline_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32937:17)
+    at async pipeline2 (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32978:26)
+    at async self.onmessage (http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:14:19) @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:16
+[ 1542883ms] [LOG] [WebLLM] Start to fetch params 0% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1547677ms] [LOG] [WebLLM] Loading model from cache[1/42]: 282MB loaded. 20% completed, 5 secs elapsed. 20% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1548047ms] [LOG] [WebLLM] Loading model from cache[2/42]: 317MB loaded. 22% completed, 6 secs elapsed. 23% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1548286ms] [LOG] [WebLLM] Loading model from cache[3/42]: 349MB loaded. 24% completed, 6 secs elapsed. 25% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1548432ms] [LOG] [WebLLM] Loading model from cache[4/42]: 369MB loaded. 26% completed, 6 secs elapsed. 26% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1548679ms] [LOG] [WebLLM] Loading model from cache[5/42]: 400MB loaded. 28% completed, 6 secs elapsed. 29% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1548914ms] [LOG] [WebLLM] Loading model from cache[6/42]: 432MB loaded. 30% completed, 7 secs elapsed. 31% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1549088ms] [LOG] [WebLLM] Loading model from cache[7/42]: 452MB loaded. 32% completed, 7 secs elapsed. 32% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1549468ms] [LOG] [WebLLM] Loading model from cache[8/42]: 484MB loaded. 34% completed, 7 secs elapsed. 34% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1549708ms] [LOG] [WebLLM] Loading model from cache[9/42]: 516MB loaded. 36% completed, 7 secs elapsed. 37% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1549861ms] [LOG] [WebLLM] Loading model from cache[10/42]: 536MB loaded. 38% completed, 8 secs elapsed. 38% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1550164ms] [LOG] [WebLLM] Loading model from cache[11/42]: 568MB loaded. 40% completed, 8 secs elapsed. 40% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1550442ms] [LOG] [WebLLM] Loading model from cache[12/42]: 599MB loaded. 42% completed, 8 secs elapsed. 43% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1550635ms] [LOG] [WebLLM] Loading model from cache[13/42]: 620MB loaded. 44% completed, 8 secs elapsed. 44% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1550922ms] [LOG] [WebLLM] Loading model from cache[14/42]: 651MB loaded. 46% completed, 9 secs elapsed. 46% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1551189ms] [LOG] [WebLLM] Loading model from cache[15/42]: 683MB loaded. 48% completed, 9 secs elapsed. 49% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1551390ms] [LOG] [WebLLM] Loading model from cache[16/42]: 703MB loaded. 50% completed, 9 secs elapsed. 50% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1551640ms] [LOG] [WebLLM] Loading model from cache[17/42]: 735MB loaded. 52% completed, 9 secs elapsed. 52% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1551881ms] [LOG] [WebLLM] Loading model from cache[18/42]: 766MB loaded. 54% completed, 10 secs elapsed. 55% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1552034ms] [LOG] [WebLLM] Loading model from cache[19/42]: 787MB loaded. 56% completed, 10 secs elapsed. 56% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1552348ms] [LOG] [WebLLM] Loading model from cache[20/42]: 818MB loaded. 58% completed, 10 secs elapsed. 58% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1552634ms] [LOG] [WebLLM] Loading model from cache[21/42]: 850MB loaded. 60% completed, 10 secs elapsed. 61% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1552784ms] [LOG] [WebLLM] Loading model from cache[22/42]: 870MB loaded. 61% completed, 10 secs elapsed. 62% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1553013ms] [LOG] [WebLLM] Loading model from cache[23/42]: 902MB loaded. 64% completed, 11 secs elapsed. 64% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1553254ms] [LOG] [WebLLM] Loading model from cache[24/42]: 934MB loaded. 66% completed, 11 secs elapsed. 67% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1553567ms] [LOG] [WebLLM] Loading model from cache[25/42]: 954MB loaded. 67% completed, 11 secs elapsed. 68% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1553882ms] [LOG] [WebLLM] Loading model from cache[26/42]: 985MB loaded. 70% completed, 12 secs elapsed. 70% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1554116ms] [LOG] [WebLLM] Loading model from cache[27/42]: 1017MB loaded. 72% completed, 12 secs elapsed. 72% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1554343ms] [LOG] [WebLLM] Loading model from cache[28/42]: 1047MB loaded. 74% completed, 12 secs elapsed. 75% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1554486ms] [LOG] [WebLLM] Loading model from cache[29/42]: 1068MB loaded. 76% completed, 12 secs elapsed. 76% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1554728ms] [LOG] [WebLLM] Loading model from cache[30/42]: 1099MB loaded. 78% completed, 12 secs elapsed. 78% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1555036ms] [LOG] [WebLLM] Loading model from cache[31/42]: 1131MB loaded. 80% completed, 13 secs elapsed. 81% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1555211ms] [LOG] [WebLLM] Loading model from cache[32/42]: 1151MB loaded. 82% completed, 13 secs elapsed. 82% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1555461ms] [LOG] [WebLLM] Loading model from cache[33/42]: 1183MB loaded. 84% completed, 13 secs elapsed. 84% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1555709ms] [LOG] [WebLLM] Loading model from cache[34/42]: 1215MB loaded. 86% completed, 13 secs elapsed. 87% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1555869ms] [LOG] [WebLLM] Loading model from cache[35/42]: 1235MB loaded. 87% completed, 14 secs elapsed. 88% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1556108ms] [LOG] [WebLLM] Loading model from cache[36/42]: 1267MB loaded. 90% completed, 14 secs elapsed. 90% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1556337ms] [LOG] [WebLLM] Loading model from cache[37/42]: 1298MB loaded. 92% completed, 14 secs elapsed. 93% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1556483ms] [LOG] [WebLLM] Loading model from cache[38/42]: 1318MB loaded. 93% completed, 14 secs elapsed. 94% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1556715ms] [LOG] [WebLLM] Loading model from cache[39/42]: 1350MB loaded. 96% completed, 14 secs elapsed. 96% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1556873ms] [LOG] [WebLLM] Loading model from cache[40/42]: 1370MB loaded. 97% completed, 15 secs elapsed. 98% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1557087ms] [LOG] [WebLLM] Loading model from cache[41/42]: 1401MB loaded. 99% completed, 15 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1557111ms] [LOG] [WebLLM] Loading model from cache[42/42]: 1403MB loaded. 100% completed, 15 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1557361ms] [LOG] [WebLLM] Loading GPU shader modules[88/88]: 100% completed, 1 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1557361ms] [LOG] [WebLLM] Finish loading on WebGPU - amd 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1557361ms] [LOG] [WebLLM] Engine ready (worker) @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:32
+[ 1557363ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1557364ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1607931ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1608547ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1608549ms] [WARNING] [EmbedWorker] error: Embedding pipeline not initialized. Send INIT first. @ http://localhost:5199/src/import/useEmbedWorker.ts:27
+[ 1608566ms] [LOG] [chatMessages] system: 283 chars | history: 0 msgs | user+ctx: 1338 chars | chunks: 3 (each ≤ 1100 chars) | total: 1621 @ http://localhost:5199/src/import/chatMessages.ts?t=1775421573166:32
+[ 1608567ms] [LOG] Query: How do I export my documents? @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:76
+[ 1608567ms] [LOG] Context chunks (3): [Object, Object, Object] @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:77
+[ 1608567ms] [LOG] System prompt: You are a grounded knowledge-base assistant. Answer only from the provided context. If the context is insufficient, say: "I don't have enough information." Cite source names. Write in complete sentences. Do not repeat the question. If the documents do not contain the answer, say so. @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:81
+[ 1608567ms] [LOG] Full messages: [
+  {
+    "role": "system",
+    "content": "You are a grounded knowledge-base assistant. Answer only from the provided context. If the context is insufficient, say: \"I don't have enough information.\" Cite source names. Write in complete sentences. Do not repeat the question. If the documents do not contain the answer, say so."
+  },
+  {
+    "role": "user",
+    "content": "Context:\n[DOC 1 — common-queries.md]\n# Common Queries and Expected Answers\n\nThis document captures frequently asked questions about local-llm-import-export and what the chat assistant should answer.\n\n## Usage Questions\n\n**Q: How do I export my documents?**\nOpen the export app (port 5198), select a chat model, optionally write system instructions, drag and drop your documents into the file drop zone, then click Start Export. A file pi\n\n[DOC 2 — common-queries.md]\nypes (CSV, XLSX, images) are not supported. Drop unsupported files and they will be rejected with an error message.\n\n**Q: How large will the exported zip be?**\nThe zip size is dominated by the model weights: TinyLlama ~700 MB, Gemma 2B ~1.4 GB, Phi-3-mini ~2.2 GB. Document content (chunks, index, sources) adds only a few MB on top.\n\n**Q: Do I need internet to use the import app?**\nNo. Once the zip\n\n[DOC 3 — common-queries.md]\n The zip is self-contained. Copy it to any computer, open the import app (port 5199) in a supported browser, and drop the zip. The model will load from the zip's bundled weights.\n\n**Q: How do I update the knowledge base with new documents?**\nRe-export with the updated document set. There is no incremental update — each export creates a complete new zip.\n\n## Technical Questions\n\n**Q: What is the sy\n\nQuestion: How do I export my documents?"
+  }
+] @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:82
+[ 1608583ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1612842ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1613060ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1613287ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1613507ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1613730ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1613956ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1614177ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1614447ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1614711ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1614971ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1615308ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1615603ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1615928ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1616272ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1616608ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1617019ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1617483ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1617975ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1618436ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1619169ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1619638ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1620203ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1620733ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1621283ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1621758ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1622294ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1622735ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1623166ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1623592ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1624053ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1624525ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1625002ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1625487ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1625942ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1626443ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1626978ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1627469ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1628151ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1628708ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1629181ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1629668ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1630608ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1631787ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1632939ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1633739ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1634916ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1635430ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1635945ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1636699ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1637208ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1637726ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1638387ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1638974ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1639886ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1640425ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1640976ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1641552ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1642191ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1642798ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1643650ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1644156ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1644677ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1645460ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1645975ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1646510ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1647044ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1647570ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1648163ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1649059ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1649903ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1650835ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1651834ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1653508ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1654555ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1655930ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1657037ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1657822ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1658470ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1659143ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1659748ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1660375ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1661067ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1661787ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1662512ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1663606ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1664464ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1665333ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1666090ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1666819ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775424232844:223
+[ 1703440ms] [LOG] [WebLLM] Loading model from pre-populated cache: gemma-2-2b-it-q4f16_1-MLC @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:16
+[ 1703441ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426528935:227
+[ 1703442ms] [LOG] [WebLLM] Load already in progress, awaiting shared promise @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:12
+[ 1703442ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426528935:227
+[ 1703444ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426528935:227
+[ 1703837ms] [LOG] [EmbedQueryWorker] ONNX WASM path → /ort-wasm/ @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:11
+[ 1703873ms] [ERROR] [EmbedQueryWorker] init failed: SyntaxError: Unexpected token ' ', "        "... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at getModelJSON (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:11400:15)
+    at async loadConfig (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22272:10)
+    at async _PretrainedConfig.from_pretrained (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22751:28)
+    at async get_model_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:24487:12)
+    at async get_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32915:17)
+    at async get_pipeline_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32937:17)
+    at async pipeline2 (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32978:26)
+    at async self.onmessage (http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:14:19) @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:16
+[ 1706660ms] [LOG] [WebLLM] Start to fetch params 0% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1713781ms] [LOG] [WebLLM] Loading model from cache[1/42]: 282MB loaded. 20% completed, 8 secs elapsed. 20% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1714339ms] [LOG] [WebLLM] Loading model from cache[2/42]: 317MB loaded. 22% completed, 8 secs elapsed. 23% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1714750ms] [LOG] [WebLLM] Loading model from cache[3/42]: 349MB loaded. 24% completed, 9 secs elapsed. 25% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1714954ms] [LOG] [WebLLM] Loading model from cache[4/42]: 369MB loaded. 26% completed, 9 secs elapsed. 26% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1715282ms] [LOG] [WebLLM] Loading model from cache[5/42]: 400MB loaded. 28% completed, 9 secs elapsed. 29% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1715643ms] [LOG] [WebLLM] Loading model from cache[6/42]: 432MB loaded. 30% completed, 10 secs elapsed. 31% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1715859ms] [LOG] [WebLLM] Loading model from cache[7/42]: 452MB loaded. 32% completed, 10 secs elapsed. 32% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1716191ms] [LOG] [WebLLM] Loading model from cache[8/42]: 484MB loaded. 34% completed, 10 secs elapsed. 34% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1716555ms] [LOG] [WebLLM] Loading model from cache[9/42]: 516MB loaded. 36% completed, 10 secs elapsed. 37% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1716862ms] [LOG] [WebLLM] Loading model from cache[10/42]: 536MB loaded. 38% completed, 11 secs elapsed. 38% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1717184ms] [LOG] [WebLLM] Loading model from cache[11/42]: 568MB loaded. 40% completed, 11 secs elapsed. 40% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1717519ms] [LOG] [WebLLM] Loading model from cache[12/42]: 599MB loaded. 42% completed, 11 secs elapsed. 43% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1717709ms] [LOG] [WebLLM] Loading model from cache[13/42]: 620MB loaded. 44% completed, 12 secs elapsed. 44% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1718021ms] [LOG] [WebLLM] Loading model from cache[14/42]: 651MB loaded. 46% completed, 12 secs elapsed. 46% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1718330ms] [LOG] [WebLLM] Loading model from cache[15/42]: 683MB loaded. 48% completed, 12 secs elapsed. 49% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1718520ms] [LOG] [WebLLM] Loading model from cache[16/42]: 703MB loaded. 50% completed, 12 secs elapsed. 50% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1718825ms] [LOG] [WebLLM] Loading model from cache[17/42]: 735MB loaded. 52% completed, 13 secs elapsed. 52% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1719467ms] [LOG] [WebLLM] Loading model from cache[18/42]: 766MB loaded. 54% completed, 13 secs elapsed. 55% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1719647ms] [LOG] [WebLLM] Loading model from cache[19/42]: 787MB loaded. 56% completed, 14 secs elapsed. 56% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1719937ms] [LOG] [WebLLM] Loading model from cache[20/42]: 818MB loaded. 58% completed, 14 secs elapsed. 58% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1720248ms] [LOG] [WebLLM] Loading model from cache[21/42]: 850MB loaded. 60% completed, 14 secs elapsed. 61% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1720446ms] [LOG] [WebLLM] Loading model from cache[22/42]: 870MB loaded. 61% completed, 14 secs elapsed. 62% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1720577ms] [LOG] [WebLLM] Load already in progress, awaiting shared promise @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:12
+[ 1720578ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426546153:228
+[ 1720740ms] [LOG] [EmbedQueryWorker] ONNX WASM path → /ort-wasm/ @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:11
+[ 1720773ms] [ERROR] [EmbedQueryWorker] init failed: SyntaxError: Unexpected token ' ', "        "... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at getModelJSON (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:11400:15)
+    at async loadConfig (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22272:10)
+    at async _PretrainedConfig.from_pretrained (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22751:28)
+    at async get_model_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:24487:12)
+    at async get_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32915:17)
+    at async get_pipeline_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32937:17)
+    at async pipeline2 (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32978:26)
+    at async self.onmessage (http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:14:19) @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:16
+[ 1720909ms] [LOG] [WebLLM] Loading model from cache[23/42]: 902MB loaded. 64% completed, 15 secs elapsed. 64% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1721269ms] [LOG] [WebLLM] Loading model from cache[24/42]: 934MB loaded. 66% completed, 15 secs elapsed. 67% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1721465ms] [LOG] [WebLLM] Loading model from cache[25/42]: 954MB loaded. 67% completed, 15 secs elapsed. 68% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1721756ms] [LOG] [WebLLM] Loading model from cache[26/42]: 985MB loaded. 70% completed, 16 secs elapsed. 70% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1722125ms] [LOG] [WebLLM] Loading model from cache[27/42]: 1017MB loaded. 72% completed, 16 secs elapsed. 72% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1722408ms] [LOG] [WebLLM] Loading model from cache[28/42]: 1047MB loaded. 74% completed, 16 secs elapsed. 75% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1722601ms] [LOG] [WebLLM] Loading model from cache[29/42]: 1068MB loaded. 76% completed, 16 secs elapsed. 76% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1722895ms] [LOG] [WebLLM] Loading model from cache[30/42]: 1099MB loaded. 78% completed, 17 secs elapsed. 78% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1723519ms] [LOG] [WebLLM] Loading model from cache[31/42]: 1131MB loaded. 80% completed, 17 secs elapsed. 81% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1723749ms] [LOG] [WebLLM] Loading model from cache[32/42]: 1151MB loaded. 82% completed, 18 secs elapsed. 82% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1724126ms] [LOG] [WebLLM] Loading model from cache[33/42]: 1183MB loaded. 84% completed, 18 secs elapsed. 84% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1724443ms] [LOG] [WebLLM] Loading model from cache[34/42]: 1215MB loaded. 86% completed, 18 secs elapsed. 87% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1724624ms] [LOG] [WebLLM] Loading model from cache[35/42]: 1235MB loaded. 87% completed, 18 secs elapsed. 88% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1724910ms] [LOG] [WebLLM] Loading model from cache[36/42]: 1267MB loaded. 90% completed, 19 secs elapsed. 90% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1725182ms] [LOG] [WebLLM] Loading model from cache[37/42]: 1298MB loaded. 92% completed, 19 secs elapsed. 93% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1725357ms] [LOG] [WebLLM] Loading model from cache[38/42]: 1318MB loaded. 93% completed, 19 secs elapsed. 94% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1725620ms] [LOG] [WebLLM] Loading model from cache[39/42]: 1350MB loaded. 96% completed, 19 secs elapsed. 96% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1725823ms] [LOG] [WebLLM] Loading model from cache[40/42]: 1370MB loaded. 97% completed, 20 secs elapsed. 98% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1726094ms] [LOG] [WebLLM] Loading model from cache[41/42]: 1401MB loaded. 99% completed, 20 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1726118ms] [LOG] [WebLLM] Loading model from cache[42/42]: 1403MB loaded. 100% completed, 20 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1726297ms] [LOG] [WebLLM] Loading GPU shader modules[88/88]: 100% completed, 1 secs elapsed. 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1726297ms] [LOG] [WebLLM] Finish loading on WebGPU - amd 100% @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:27
+[ 1726297ms] [LOG] [WebLLM] Engine ready (worker) @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:32
+[ 1726298ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426546153:228
+[ 1726300ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426546153:228
+[ 1734082ms] [LOG] [WebLLM] Engine already exists (singleton), skipping load @ http://localhost:5199/src/import/useWebLLM.ts?t=1775419993754:8
+[ 1734082ms] [LOG] %c[kb] Console API ready color: #4ade80; font-weight: bold 
+  kb.ask("question")          → search + LLM answer 
+  kb.search("question")       → show retrieved chunks 
+  kb.prompt("question")       → show full prompt without calling LLM 
+  kb.history()                → show current chat history 
+  kb.batch(["q1","q2"])       → run multiple questions 
+  askchat("question")         → alias for kb.ask() @ http://localhost:5199/src/import/ChatInterface.tsx?t=1775426559773:228
+[ 1734176ms] [LOG] [EmbedQueryWorker] ONNX WASM path → /ort-wasm/ @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:11
+[ 1734197ms] [ERROR] [EmbedQueryWorker] init failed: SyntaxError: Unexpected token ' ', "        "... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at getModelJSON (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:11400:15)
+    at async loadConfig (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22272:10)
+    at async _PretrainedConfig.from_pretrained (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:22751:28)
+    at async get_model_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:24487:12)
+    at async get_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32915:17)
+    at async get_pipeline_files (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32937:17)
+    at async pipeline2 (http://localhost:5199/node_modules/.vite/deps/@huggingface_transformers.js?t=1775424233564&v=ddf7bfb4:32978:26)
+    at async self.onmessage (http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:14:19) @ http://localhost:5199/src/workers/embed-query-worker.ts?worker_file&type=module:16
+[ 2278370ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5199/node_modules/.vite/deps/chunk-FD5SMSK5.js?v=02fd6fff:21608
+[ 2306133ms] [LOG] [Import] Handing zip to unzip-worker: knowledge-basev9.zip (1.52 GB) @ http://localhost:5199/src/import/useImportPipeline.ts:15
+[ 2308337ms] [LOG] [UnzipWorker] Cached model/mlc-chat-config.json (0.0 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 2308739ms] [LOG] [UnzipWorker] Cached model/tokenizer_config.json (0.0 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 2308857ms] [LOG] [UnzipWorker] Cached model/tensor-cache.json (0.1 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 2308858ms] [LOG] [UnzipWorker] Cached model/tokenizer.model (4.2 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 2309197ms] [LOG] [UnzipWorker] Cached model/tokenizer.json (17.5 MB) @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:82
+[ 2309413ms] [LOG] [UnzipWorker] OPFS: orama-index.json.gz @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309417ms] [LOG] [UnzipWorker] OPFS: instructions.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309602ms] [LOG] [UnzipWorker] OPFS: chunks.json @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309609ms] [LOG] [UnzipWorker] OPFS: sources/debugging-guide.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309613ms] [LOG] [UnzipWorker] OPFS: sources/architecture.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309614ms] [LOG] [UnzipWorker] OPFS: sources/browser-requirements.txt @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309616ms] [LOG] [UnzipWorker] OPFS: sources/troubleshooting.txt @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309623ms] [LOG] [UnzipWorker] OPFS: sources/quick-start-guide.pdf @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309624ms] [LOG] [UnzipWorker] OPFS: sources/common-queries.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309750ms] [LOG] [UnzipWorker] OPFS: sources/model-reference.docx @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103
+[ 2309751ms] [LOG] [UnzipWorker] OPFS: sources/project-overview.md @ http://localhost:5199/src/workers/unzip-worker.ts?worker_file&type=module:103

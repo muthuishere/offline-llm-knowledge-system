@@ -1,0 +1,112 @@
+version: '3'
+
+tasks:
+  # ─── Export App ───────────────────────────────────────────────────────────────
+
+  export:install:
+    desc: Install dependencies for the export app
+    dir: apps/export
+    cmd: npm install
+
+  export:dev:
+    desc: Start export app dev server
+    dir: apps/export
+    cmd: npm run dev
+
+  export:build:
+    desc: Build export app for production
+    dir: apps/export
+    cmd: npm run build
+
+  export:preview:
+    desc: Preview export app production build
+    dir: apps/export
+    cmd: npm run preview
+
+  export:test:
+    desc: Run all export app tests
+    dir: apps/export
+    cmd: npm test
+
+  export:test:unit:
+    desc: Run export app unit tests
+    dir: apps/export
+    cmd: npm run test:unit
+
+  export:test:integration:
+    desc: Run export app integration tests
+    dir: apps/export
+    cmd: npm run test:integration
+
+  export:test:e2e:
+    desc: Run export app e2e tests
+    dir: apps/export
+    cmd: npm run test:e2e
+
+  # ─── Import App ───────────────────────────────────────────────────────────────
+
+  import:install:
+    desc: Install dependencies for the import app
+    dir: apps/import
+    cmd: npm install
+
+  import:dev:
+    desc: Start import app dev server
+    dir: apps/import
+    cmd: npm run dev
+
+  import:build:
+    desc: Build import app for production
+    dir: apps/import
+    cmd: npm run build
+
+  import:preview:
+    desc: Preview import app production build
+    dir: apps/import
+    cmd: npm run preview
+
+  import:test:
+    desc: Run all import app tests
+    dir: apps/import
+    cmd: npm test
+
+  import:test:unit:
+    desc: Run import app unit tests
+    dir: apps/import
+    cmd: npm run test:unit
+
+  import:test:integration:
+    desc: Run import app integration tests
+    dir: apps/import
+    cmd: npm run test:integration
+
+  import:test:e2e:
+    desc: Run import app e2e tests
+    dir: apps/import
+    cmd: npm run test:e2e
+
+  # ─── Combined ─────────────────────────────────────────────────────────────────
+
+  dev:
+    desc: Start dev servers for both export and import apps concurrently
+    deps:
+      - export:dev
+      - import:dev
+
+  install:
+    desc: Install dependencies for both apps
+    cmds:
+      - task: export:install
+      - task: import:install
+
+  build:
+    desc: Build both apps for production
+    cmds:
+      - task: export:build
+      - task: import:build
+
+  test:
+    desc: Run all tests for both apps
+    cmds:
+      - task: export:test
+      - task: import:test

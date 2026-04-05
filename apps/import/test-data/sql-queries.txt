@@ -1,0 +1,326 @@
+USEFUL SQL QUERIES FOR DEVELOPERS
+==================================
+
+A collection of practical SQL queries for everyday development tasks.
+All examples use PostgreSQL syntax unless otherwise noted.
+
+---
+
+TABLE OF CONTENTS
+1. Basic CRUD Operations
+2. Aggregations and Analytics
+3. Window Functions
+4. Common Table Expressions (CTEs)
+5. Performance and Indexes
+6. JSON Operations
+7. Date and Time Queries
+8. Todo App Specific Queries
+
+---
+
+1. BASIC CRUD OPERATIONS
+------------------------
+
+-- Create a new todo item
+INSERT INTO todos (user_id, title, description, priority, due_date, created_at)
+VALUES (42, 'Write unit tests', 'Cover the auth module with at least 80% coverage', 'high', '2026-04-10', NOW())
+RETURNING id, title, created_at;
+
+-- Get all todos for a user, ordered by priority then due date
+SELECT
+    t.id,
+    t.title,
+    t.description,
+    t.priority,
+    t.due_date,
+    t.completed_at,
+    t.created_at,
+    ARRAY_AGG(tg.name) FILTER (WHERE tg.name IS NOT NULL) AS tags
+FROM todos t
+LEFT JOIN todo_tags tt ON tt.todo_id = t.id
+LEFT JOIN tags tg ON tg.id = tt.tag_id
+WHERE t.user_id = 42
+  AND t.completed_at IS NULL
+GROUP BY t.id
+ORDER BY
+    CASE t.priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 ELSE 3 END,
+    t.due_date ASC NULLS LAST;
+
+-- Update a todo's status to completed
+UPDATE todos
+SET completed_at = NOW(), updated_at = NOW()
+WHERE id = 101 AND user_id = 42
+RETURNING id, title, completed_at;
+
+-- Soft delete (mark as deleted instead of removing)
+UPDATE todos
+SET deleted_at = NOW()
+WHERE id = 101 AND user_id = 42;
+
+-- Hard delete completed todos older than 30 days
+DELETE FROM todos
+WHERE completed_at < NOW() - INTERVAL '30 days'
+RETURNING id, title;
+
+---
+
+2. AGGREGATIONS AND ANALYTICS
+------------------------------
+
+-- Count todos by status for a user
+SELECT
+    COUNT(*) FILTER (WHERE completed_at IS NULL AND deleted_at IS NULL) AS active,
+    COUNT(*) FILTER (WHERE completed_at IS NOT NULL AND deleted_at IS NULL) AS completed,
+    COUNT(*) FILTER (WHERE deleted_at IS NOT NULL) AS deleted,
+    COUNT(*) AS total
+FROM todos
+WHERE user_id = 42;
+
+-- Completion rate by priority
+SELECT
+    priority,
+    COUNT(*) AS total,
+    COUNT(completed_at) AS completed,
+    ROUND(100.0 * COUNT(completed_at) / COUNT(*), 1) AS completion_pct
+FROM todos
+WHERE user_id = 42 AND deleted_at IS NULL
+GROUP BY priority
+ORDER BY 1;
+
+-- Daily todo creation trend for last 30 days
+SELECT
+    DATE_TRUNC('day', created_at) AS day,
+    COUNT(*) AS todos_created,
+    COUNT(completed_at) AS todos_completed
+FROM todos
+WHERE user_id = 42
+  AND created_at >= NOW() - INTERVAL '30 days'
+GROUP BY 1
+ORDER BY 1;
+
+-- Average time to complete a todo (in hours)
+SELECT
+    priority,
+    ROUND(AVG(EXTRACT(EPOCH FROM (completed_at - created_at)) / 3600)::numeric, 1) AS avg_hours_to_complete
+FROM todos
+WHERE completed_at IS NOT NULL
+  AND deleted_at IS NULL
+GROUP BY priority;
+
+---
+
+3. WINDOW FUNCTIONS
+-------------------
+
+-- Rank todos by due date within each priority bucket
+SELECT
+    id,
+    title,
+    priority,
+    due_date,
+    RANK() OVER (PARTITION BY priority ORDER BY due_date ASC NULLS LAST) AS rank_in_priority
+FROM todos
+WHERE user_id = 42 AND completed_at IS NULL AND deleted_at IS NULL;
+
+-- Running total of todos completed per day
+SELECT
+    DATE_TRUNC('day', completed_at) AS day,
+    COUNT(*) AS completed_today,
+    SUM(COUNT(*)) OVER (ORDER BY DATE_TRUNC('day', completed_at)) AS running_total
+FROM todos
+WHERE user_id = 42 AND completed_at IS NOT NULL
+GROUP BY 1
+ORDER BY 1;
+
+-- Compare this week's completions vs last week (using LAG)
+WITH weekly AS (
+    SELECT
+        DATE_TRUNC('week', completed_at) AS week,
+        COUNT(*) AS completed
+    FROM todos
+    WHERE completed_at IS NOT NULL
+    GROUP BY 1
+)
+SELECT
+    week,
+    completed,
+    LAG(completed) OVER (ORDER BY week) AS prev_week,
+    completed - LAG(completed) OVER (ORDER BY week) AS delta
+FROM weekly
+ORDER BY week DESC;
+
+---
+
+4. COMMON TABLE EXPRESSIONS (CTEs)
+-----------------------------------
+
+-- Find users with overdue high-priority todos
+WITH overdue_high AS (
+    SELECT
+        user_id,
+        COUNT(*) AS overdue_count
+    FROM todos
+    WHERE priority = 'high'
+      AND due_date < CURRENT_DATE
+      AND completed_at IS NULL
+      AND deleted_at IS NULL
+    GROUP BY user_id
+)
+SELECT
+    u.id,
+    u.email,
+    u.name,
+    oh.overdue_count
+FROM users u
+JOIN overdue_high oh ON oh.user_id = u.id
+ORDER BY oh.overdue_count DESC;
+
+-- Recursive CTE: find a tag and all its child tags
+WITH RECURSIVE tag_tree AS (
+    SELECT id, name, parent_id, 0 AS depth
+    FROM tags
+    WHERE id = 5  -- root tag id
+
+    UNION ALL
+
+    SELECT t.id, t.name, t.parent_id, tt.depth + 1
+    FROM tags t
+    JOIN tag_tree tt ON tt.id = t.parent_id
+)
+SELECT * FROM tag_tree ORDER BY depth, name;
+
+---
+
+5. PERFORMANCE AND INDEXES
+---------------------------
+
+-- Useful indexes for the todos table
+CREATE INDEX idx_todos_user_active ON todos (user_id, created_at DESC)
+    WHERE completed_at IS NULL AND deleted_at IS NULL;
+
+CREATE INDEX idx_todos_due_date ON todos (due_date ASC NULLS LAST)
+    WHERE completed_at IS NULL AND deleted_at IS NULL;
+
+CREATE INDEX idx_todos_full_text ON todos USING GIN (
+    TO_TSVECTOR('english', COALESCE(title, '') || ' ' || COALESCE(description, ''))
+);
+
+-- Full-text search on todos
+SELECT id, title, description,
+       TS_RANK(TO_TSVECTOR('english', title || ' ' || COALESCE(description, '')),
+               PLAINTO_TSQUERY('english', 'unit test coverage')) AS rank
+FROM todos
+WHERE TO_TSVECTOR('english', title || ' ' || COALESCE(description, ''))
+      @@ PLAINTO_TSQUERY('english', 'unit test coverage')
+ORDER BY rank DESC;
+
+-- EXPLAIN ANALYZE a slow query
+EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
+SELECT * FROM todos WHERE user_id = 42 AND completed_at IS NULL;
+
+-- Find missing indexes (tables with many sequential scans)
+SELECT
+    relname AS table,
+    seq_scan,
+    idx_scan,
+    seq_scan - idx_scan AS missing_index_hint
+FROM pg_stat_user_tables
+WHERE seq_scan > idx_scan
+ORDER BY seq_scan DESC;
+
+---
+
+6. JSON OPERATIONS
+------------------
+
+-- Extract a value from a JSONB column
+SELECT id, metadata->>'source' AS source
+FROM todos
+WHERE metadata->>'source' = 'mobile';
+
+-- Query todos where JSONB array contains a value
+SELECT * FROM todos
+WHERE metadata->'labels' ? 'urgent';
+
+-- Update a nested JSONB field
+UPDATE todos
+SET metadata = JSONB_SET(metadata, '{source}', '"web"')
+WHERE id = 42;
+
+-- Aggregate JSONB values across rows
+SELECT JSONB_AGG(
+    JSONB_BUILD_OBJECT('id', id, 'title', title, 'priority', priority)
+    ORDER BY created_at DESC
+) AS todos_json
+FROM todos
+WHERE user_id = 42 AND completed_at IS NULL;
+
+---
+
+7. DATE AND TIME QUERIES
+------------------------
+
+-- Todos due this week
+SELECT * FROM todos
+WHERE due_date BETWEEN DATE_TRUNC('week', CURRENT_DATE)
+                   AND DATE_TRUNC('week', CURRENT_DATE) + INTERVAL '6 days'
+  AND completed_at IS NULL;
+
+-- Todos created in the last 24 hours
+SELECT * FROM todos
+WHERE created_at > NOW() - INTERVAL '24 hours';
+
+-- Format timestamps for display
+SELECT
+    id,
+    title,
+    TO_CHAR(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'America/New_York', 'Mon DD, YYYY HH12:MI AM') AS created_local
+FROM todos
+WHERE user_id = 42;
+
+-- Age of each todo
+SELECT
+    id, title,
+    AGE(NOW(), created_at) AS age,
+    EXTRACT(DAY FROM AGE(NOW(), created_at)) AS days_old
+FROM todos
+WHERE user_id = 42;
+
+---
+
+8. TODO APP SPECIFIC QUERIES
+-----------------------------
+
+-- Get a user's todo dashboard summary
+SELECT
+    (SELECT COUNT(*) FROM todos WHERE user_id = $1 AND completed_at IS NULL AND deleted_at IS NULL) AS active_todos,
+    (SELECT COUNT(*) FROM todos WHERE user_id = $1 AND priority = 'high' AND completed_at IS NULL AND deleted_at IS NULL) AS high_priority,
+    (SELECT COUNT(*) FROM todos WHERE user_id = $1 AND due_date < CURRENT_DATE AND completed_at IS NULL AND deleted_at IS NULL) AS overdue,
+    (SELECT COUNT(*) FROM todos WHERE user_id = $1 AND DATE_TRUNC('day', completed_at) = CURRENT_DATE) AS completed_today;
+
+-- Bulk assign a tag to multiple todos
+INSERT INTO todo_tags (todo_id, tag_id)
+SELECT t.id, 7  -- tag_id = 7 = 'work'
+FROM todos t
+WHERE t.user_id = 42 AND t.id = ANY(ARRAY[1, 5, 12, 33])
+ON CONFLICT DO NOTHING;
+
+-- Get todos with their completion streak (consecutive days)
+WITH daily_completions AS (
+    SELECT DATE_TRUNC('day', completed_at)::date AS day
+    FROM todos
+    WHERE user_id = 42 AND completed_at IS NOT NULL
+    GROUP BY 1
+),
+streaks AS (
+    SELECT
+        day,
+        day - (ROW_NUMBER() OVER (ORDER BY day))::int AS grp
+    FROM daily_completions
+)
+SELECT MIN(day) AS streak_start, MAX(day) AS streak_end,
+       COUNT(*) AS streak_length
+FROM streaks
+GROUP BY grp
+ORDER BY streak_length DESC
+LIMIT 1;

@@ -1,0 +1,208 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792]
+   /Contents 4 0 R
+   /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 4207 >>
+stream
+BT
+/F1 18 Tf
+50 770 Td
+(Getting Started with Docker) Tj
+
+/F2 13 Tf
+50 730 Td
+(What is Docker?) Tj
+/F1 10 Tf
+50 710 Td
+(Docker is a platform for developing, shipping, and running applications) Tj
+50 696 Td
+(inside lightweight containers. Containers package your application and its) Tj
+50 682 Td
+(dependencies together, ensuring it runs the same everywhere.) Tj
+50 660 Td
+(Unlike virtual machines, containers share the host OS kernel and start in) Tj
+50 646 Td
+(milliseconds. A typical Node.js app container is 100-200 MB vs a VM at 2+ GB.) Tj
+/F2 13 Tf
+50 622 Td
+(Installing Docker) Tj
+/F1 10 Tf
+50 602 Td
+(On macOS, download Docker Desktop from docker.com/products/docker-desktop.) Tj
+50 588 Td
+(Install the .dmg and follow the setup wizard. Docker Desktop includes the) Tj
+50 574 Td
+(Docker Engine, Docker CLI, and Docker Compose.) Tj
+50 552 Td
+(Verify installation:) Tj
+50 538 Td
+(docker --version) Tj
+50 524 Td
+(docker compose version) Tj
+50 502 Td
+(On Ubuntu Linux:) Tj
+50 488 Td
+(curl -fsSL https://get.docker.com | sh) Tj
+50 474 Td
+(sudo usermod -aG docker $USER) Tj
+50 460 Td
+(newgrp docker) Tj
+/F2 13 Tf
+50 436 Td
+(Core Concepts) Tj
+/F1 10 Tf
+50 416 Td
+(IMAGE: A read-only template used to create containers. Think of it as a) Tj
+50 402 Td
+(class in object-oriented programming. Images are built from a Dockerfile.) Tj
+50 380 Td
+(CONTAINER: A running instance of an image. Like an object instantiated) Tj
+50 366 Td
+(from a class. Containers are isolated but share the host kernel.) Tj
+50 344 Td
+(DOCKERFILE: A text file with instructions to build an image. Each) Tj
+50 330 Td
+(instruction adds a layer. Layers are cached, making rebuilds fast.) Tj
+50 308 Td
+(REGISTRY: A storage and distribution system for images. Docker Hub is the) Tj
+50 294 Td
+(default public registry. You can run private registries too.) Tj
+50 272 Td
+(VOLUME: Persistent storage that lives outside the container filesystem.) Tj
+50 258 Td
+(Data in volumes survives container restarts and deletions.) Tj
+50 236 Td
+(NETWORK: Containers on the same Docker network can communicate by name.) Tj
+50 222 Td
+(Docker creates a default bridge network automatically.) Tj
+/F2 13 Tf
+50 198 Td
+(Essential Commands) Tj
+/F1 10 Tf
+50 178 Td
+(Build an image from a Dockerfile in the current directory:) Tj
+50 164 Td
+(docker build -t myapp:latest .) Tj
+50 142 Td
+(Run a container from an image:) Tj
+50 128 Td
+(docker run -d -p 3000:3000 --name myapp myapp:latest) Tj
+50 106 Td
+(List running containers:) Tj
+50 92 Td
+(docker ps) Tj
+50 70 Td
+(Stop and remove a container:) Tj
+50 60 Td
+(docker logs -f myapp) Tj
+50 60 Td
+(docker exec -it myapp sh) Tj
+50 60 Td
+(docker pull postgres:16) Tj
+50 60 Td
+(docker images) Tj
+50 60 Td
+(docker image prune -a) Tj
+/F2 13 Tf
+50 36 Td
+(Writing a Dockerfile) Tj
+/F1 10 Tf
+50 60 Td
+(WORKDIR /app) Tj
+50 60 Td
+(RUN npm ci --only=production) Tj
+50 60 Td
+(EXPOSE 3000) Tj
+50 60 Td
+(CMD ["node", "server.js"]) Tj
+50 60 Td
+(- Use a specific image tag, not latest, for reproducibility) Tj
+50 60 Td
+(- Copy package.json before source files to leverage build cache) Tj
+50 60 Td
+(- Use multi-stage builds to keep final image small) Tj
+/F2 13 Tf
+50 36 Td
+(Docker Compose for Local Development) Tj
+/F1 10 Tf
+50 60 Td
+(services:) Tj
+50 60 Td
+(build: .) Tj
+50 60 Td
+(- "3000:3000") Tj
+50 60 Td
+(DATABASE_URL: postgresql://postgres:password@db:5432/todos) Tj
+50 60 Td
+(db:) Tj
+50 60 Td
+(volumes:) Tj
+50 60 Td
+(- /app/node_modules) Tj
+50 60 Td
+(image: postgres:16-alpine) Tj
+50 60 Td
+(POSTGRES_PASSWORD: password) Tj
+50 60 Td
+(volumes:) Tj
+50 60 Td
+(healthcheck:) Tj
+50 60 Td
+(interval: 5s) Tj
+50 60 Td
+(retries: 5) Tj
+50 60 Td
+(postgres_data:) Tj
+50 60 Td
+(Stop everything: docker compose down) Tj
+/F2 13 Tf
+50 50 Td
+(Troubleshooting Common Issues) Tj
+/F1 10 Tf
+50 60 Td
+(Check logs with: docker logs <container-name>) Tj
+50 60 Td
+(port already in use, entrypoint command not found.) Tj
+50 60 Td
+(Ensure you published the port with -p host:container) Tj
+50 60 Td
+(The container user may not have write permission to the mounted host directory.) Tj
+50 60 Td
+(Check your .dockerignore file excludes node_modules, .git, and build artifacts.) Tj
+50 60 Td
+(docker system prune -a --volumes \(WARNING: removes all unused data\)) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica
+   /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold
+   /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000263 00000 n 
+0000004522 00000 n 
+0000004622 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+4727
+%%EOF

@@ -1,0 +1,70 @@
+task: [export:dev] npm run dev
+task: [import:dev] npm run dev
+
+> local-llm-import-export@1.0.0 dev
+> vite
+
+
+> local-llm-import-export@1.0.0 dev
+> vite
+
+Port 5199 is in use, trying another one...
+
+  VITE v6.4.1  ready in 372 ms
+
+  ➜  Local:   http://localhost:5200/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+  VITE v6.4.1  ready in 446 ms
+
+  ➜  Local:   http://localhost:5198/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+12:45:35 AM [vite] vite.config.ts changed, restarting server...
+12:45:35 AM [vite] vite.config.ts changed, restarting server...
+12:45:36 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+12:45:36 AM [vite] server restarted.
+12:45:46 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+12:45:53 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+12:46:03 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:11 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:11 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:16 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:07:36 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:31:56 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:32:08 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:43:13 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:43:30 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:43:41 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:44:02 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+1:48:52 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:04:05 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:04:51 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:05:00 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:05:39 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:09:33 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:09:39 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:33:05 AM [vite] (client) hmr update /src/pages/ExportPage.tsx, /src/export/ModelPicker.tsx
+2:33:05 AM [vite] (client) hmr update /src/pages/ExportPage.tsx
+2:33:18 AM [vite] (client) hmr update /src/pages/ExportPage.tsx
+2:42:42 AM [vite] (client) page reload src/workers/embed-worker.ts
+2:43:18 AM [vite] (client) hmr update /src/pages/ExportPage.tsx
+2:43:46 AM [vite] (client) hmr update /src/pages/ExportPage.tsx
+2:43:56 AM [vite] (client) page reload src/workers/zip-worker.ts
+2:43:57 AM [vite] (client) page reload src/workers/zip-worker.ts
+2:44:03 AM [vite] (client) page reload src/workers/zip-worker.ts
+2:44:03 AM [vite] (client) page reload src/workers/zip-worker.ts
+2:44:17 AM [vite] (client) page reload src/workers/zip-worker.ts
+2:44:25 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:44:53 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:45:22 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:45:36 AM [vite] (client) page reload src/workers/unzip-worker.ts
+2:53:26 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:53:33 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:53:33 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+2:53:52 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+3:09:39 AM [vite] (client) page reload src/workers/embed-worker.ts
+3:32:08 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+3:32:26 AM [vite] (client) hmr update /src/import/ChatInterface.tsx
+3:32:39 AM [vite] (client) hmr update /src/import/ChatInterface.tsx

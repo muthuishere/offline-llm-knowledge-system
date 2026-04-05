@@ -1,0 +1,12 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]: Knowledge Base Chat
+  - main [ref=e9]:
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e26]: Chat ready
+        - button "Clear knowledge base" [ref=e27] [cursor=pointer]
+      - generic [ref=e29]: Ask a question about your knowledge base
+      - generic [ref=e31]:
+        - textbox "Ask a question... (Enter to send, Shift+Enter for newline)" [active] [ref=e32]
+        - button "Send" [disabled] [ref=e33]

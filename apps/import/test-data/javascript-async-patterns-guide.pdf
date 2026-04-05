@@ -1,0 +1,200 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792]
+   /Contents 4 0 R
+   /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 3937 >>
+stream
+BT
+/F1 18 Tf
+50 770 Td
+(JavaScript Async Patterns Guide) Tj
+
+/F2 13 Tf
+50 730 Td
+(Callbacks) Tj
+/F1 10 Tf
+50 710 Td
+(The original async pattern in JavaScript. A function passed as an argument) Tj
+50 696 Td
+(to be called when an async operation completes.) Tj
+50 674 Td
+(fs.readFile\("data.txt", "utf8", function\(err, data\) {) Tj
+50 660 Td
+(if \(err\) {) Tj
+50 646 Td
+(console.error\("Error:", err\);) Tj
+50 632 Td
+(return;) Tj
+50 618 Td
+(}) Tj
+50 604 Td
+(console.log\(data\);) Tj
+50 590 Td
+(}\);) Tj
+50 568 Td
+(Problems with callbacks: "callback hell" \(deeply nested\), error handling) Tj
+50 554 Td
+(is inconsistent \(sometimes first arg, sometimes thrown\), difficult to) Tj
+50 540 Td
+(compose multiple async operations.) Tj
+/F2 13 Tf
+50 516 Td
+(Promises) Tj
+/F1 10 Tf
+50 496 Td
+(Promises represent a value that will be available in the future.) Tj
+50 482 Td
+(They have three states: pending, fulfilled, rejected.) Tj
+50 460 Td
+(fetch\("/api/todos"\)) Tj
+50 446 Td
+(.then\(response => response.json\(\)\)) Tj
+50 432 Td
+(.then\(data => console.log\(data\)\)) Tj
+50 418 Td
+(.catch\(error => console.error\(error\)\)) Tj
+50 404 Td
+(.finally\(\(\) => setLoading\(false\)\);) Tj
+50 382 Td
+(Promise.all ? run multiple promises in parallel, wait for all:) Tj
+50 368 Td
+(const [user, todos] = await Promise.all\([fetchUser\(id\), fetchTodos\(id\)]\);) Tj
+50 346 Td
+(Promise.allSettled ? like all, but does not reject if one fails:) Tj
+50 332 Td
+(const results = await Promise.allSettled\([p1, p2, p3]\);) Tj
+50 310 Td
+(Promise.race ? resolves/rejects with the first settled promise:) Tj
+50 296 Td
+(const result = await Promise.race\([fetch\(url\), timeout\(5000\)]\);) Tj
+50 274 Td
+(Promise.any ? resolves with the first fulfilled promise:) Tj
+50 260 Td
+(const fastest = await Promise.any\([mirror1, mirror2, mirror3]\);) Tj
+/F2 13 Tf
+50 236 Td
+(Async/Await) Tj
+/F1 10 Tf
+50 216 Td
+(Async/await is syntactic sugar over Promises. It makes async code) Tj
+50 202 Td
+(look and behave like synchronous code.) Tj
+50 180 Td
+(async function loadTodos\(userId: number\): Promise<Todo[]> {) Tj
+50 166 Td
+(try {) Tj
+50 152 Td
+(const response = await fetch\(`/api/users/${userId}/todos`\);) Tj
+50 138 Td
+(if \(!response.ok\) throw new Error\(`HTTP ${response.status}`\);) Tj
+50 124 Td
+(return await response.json\(\);) Tj
+50 110 Td
+(} catch \(error\) {) Tj
+50 96 Td
+(console.error\("Failed to load todos:", error\);) Tj
+50 82 Td
+(throw error;) Tj
+50 68 Td
+(}) Tj
+50 60 Td
+(- async functions always return a Promise) Tj
+50 60 Td
+(- Use try/catch for error handling) Tj
+50 60 Td
+(// SLOW: each awaits before the next starts) Tj
+50 60 Td
+(const todos = await fetchTodos\(id\);) Tj
+50 60 Td
+(const [user, todos] = await Promise.all\([fetchUser\(id\), fetchTodos\(id\)]\);) Tj
+/F2 13 Tf
+50 36 Td
+(Generators and Async Generators) Tj
+/F1 10 Tf
+50 60 Td
+(Async generators combine generators with async/await.) Tj
+50 60 Td
+(let page = 1;) Tj
+50 60 Td
+(const todos = await fetchTodosPage\(userId, page\);) Tj
+50 60 Td
+(yield todos;) Tj
+50 60 Td
+(}) Tj
+50 60 Td
+(for await \(const page of streamTodos\(42\)\) {) Tj
+50 60 Td
+(}) Tj
+/F2 13 Tf
+50 50 Td
+(AbortController ? Cancelling Async Operations) Tj
+/F1 10 Tf
+50 60 Td
+(const controller = new AbortController\(\);) Tj
+50 60 Td
+(.finally\(\(\) => clearTimeout\(timer\)\);) Tj
+50 60 Td
+(useEffect\(\(\) => {) Tj
+50 60 Td
+(fetch\("/api/todos", { signal: controller.signal }\)) Tj
+50 60 Td
+(.then\(setTodos\)) Tj
+50 60 Td
+(if \(err.name !== "AbortError"\) setError\(err\);) Tj
+50 60 Td
+(return \(\) => controller.abort\(\);) Tj
+/F2 13 Tf
+50 50 Td
+(Error Handling Patterns) Tj
+/F1 10 Tf
+50 60 Td
+(type Result<T> = { ok: true; value: T } | { ok: false; error: string };) Tj
+50 60 Td
+(try {) Tj
+50 60 Td
+(if \(!res.ok\) return { ok: false, error: `HTTP ${res.status}` };) Tj
+50 60 Td
+(} catch \(e\) {) Tj
+50 60 Td
+(}) Tj
+50 60 Td
+(if \(!result.ok\) {) Tj
+50 60 Td
+(return;) Tj
+50 60 Td
+(setTodos\(result.value\);) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica
+   /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold
+   /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000263 00000 n 
+0000004252 00000 n 
+0000004352 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+4457
+%%EOF

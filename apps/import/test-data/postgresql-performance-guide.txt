@@ -1,0 +1,305 @@
+POSTGRESQL PERFORMANCE TUNING GUIDE
+=====================================
+
+A practical guide to diagnosing and fixing PostgreSQL performance problems.
+Covers query optimization, index design, configuration tuning, and monitoring.
+
+---
+
+SECTION 1: DIAGNOSING SLOW QUERIES
+-------------------------------------
+
+The first step in any performance investigation is finding which queries are slow.
+
+Enable the pg_stat_statements extension (once, as superuser):
+
+    CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+
+Find the top 10 slowest queries by total execution time:
+
+    SELECT
+        LEFT(query, 100) AS query_preview,
+        calls,
+        ROUND(total_exec_time::numeric, 2) AS total_ms,
+        ROUND(mean_exec_time::numeric, 2) AS avg_ms,
+        ROUND(stddev_exec_time::numeric, 2) AS stddev_ms,
+        rows
+    FROM pg_stat_statements
+    ORDER BY total_exec_time DESC
+    LIMIT 10;
+
+Find queries with the highest average execution time (these hurt worst per call):
+
+    SELECT
+        LEFT(query, 100) AS query_preview,
+        calls,
+        ROUND(mean_exec_time::numeric, 2) AS avg_ms
+    FROM pg_stat_statements
+    WHERE calls > 10
+    ORDER BY mean_exec_time DESC
+    LIMIT 10;
+
+Reset stats to start fresh:
+
+    SELECT pg_stat_statements_reset();
+
+---
+
+SECTION 2: READING EXPLAIN ANALYZE
+-------------------------------------
+
+Always use EXPLAIN (ANALYZE, BUFFERS) to understand what the planner is doing.
+
+    EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT)
+    SELECT * FROM todos WHERE user_id = 42 AND completed_at IS NULL;
+
+Key terms to understand:
+
+    Seq Scan — reading the entire table. Almost always a problem on large tables.
+    Index Scan — using an index to find rows. Good.
+    Index Only Scan — answer served entirely from index. Best.
+    Bitmap Heap Scan — efficient for medium selectivity. Usually fine.
+    Nested Loop — join that iterates inner table per outer row. Good for small tables.
+    Hash Join — builds a hash table from smaller side. Good for medium tables.
+    Merge Join — requires both sides sorted. Good for large sorted inputs.
+
+    cost=X..Y — estimated cost (X = startup, Y = total). Not real time.
+    actual time=A..B — real wall-clock time in milliseconds.
+    rows=N — estimated rows. If very wrong, statistics may be stale (run ANALYZE).
+    Buffers: hit=N read=N — cache hits vs disk reads.
+
+Red flags:
+    - Large difference between estimated rows and actual rows
+    - Many disk reads (read=) instead of cache hits (hit=)
+    - Filter: rows removed by filter (means index is not selective enough)
+    - Very high total time on a Seq Scan over a large table
+
+---
+
+SECTION 3: INDEX DESIGN
+--------------------------
+
+Indexes are the single most impactful optimization. Design them for your queries.
+
+Basic single-column index:
+
+    CREATE INDEX idx_todos_user_id ON todos (user_id);
+
+Composite index — column order matters. Put the most selective column first,
+or the equality column before the range/sort column:
+
+    -- Good for: WHERE user_id = X AND created_at > Y ORDER BY created_at
+    CREATE INDEX idx_todos_user_created ON todos (user_id, created_at DESC);
+
+Partial index — only indexes rows matching a condition. Smaller, faster:
+
+    -- Only active todos (ignores completed/deleted rows)
+    CREATE INDEX idx_todos_active ON todos (user_id, due_date)
+        WHERE completed_at IS NULL AND deleted_at IS NULL;
+
+Expression index — index on a computed value:
+
+    CREATE INDEX idx_todos_title_lower ON todos (LOWER(title));
+    -- Useful for: WHERE LOWER(title) = LOWER('Buy Milk')
+
+Full-text search index (GIN):
+
+    CREATE INDEX idx_todos_fts ON todos USING GIN (
+        TO_TSVECTOR('english', COALESCE(title, '') || ' ' || COALESCE(description, ''))
+    );
+
+JSONB index:
+
+    -- Index all keys in a JSONB column
+    CREATE INDEX idx_todos_metadata ON todos USING GIN (metadata);
+
+    -- Index a specific key only
+    CREATE INDEX idx_todos_source ON todos ((metadata->>'source'));
+
+Covering index (INCLUDE) — adds extra columns to avoid heap fetches:
+
+    CREATE INDEX idx_todos_cover ON todos (user_id, completed_at)
+        INCLUDE (title, priority);
+    -- Enables Index Only Scan for: SELECT title, priority WHERE user_id=X AND completed_at IS NULL
+
+Find unused indexes (waste of write overhead):
+
+    SELECT
+        schemaname || '.' || relname AS table,
+        indexrelname AS index,
+        idx_scan AS scans,
+        pg_size_pretty(pg_relation_size(indexrelid)) AS size
+    FROM pg_stat_user_indexes
+    WHERE idx_scan = 0
+      AND NOT indisprimary
+      AND NOT indisunique
+    ORDER BY pg_relation_size(indexrelid) DESC;
+
+---
+
+SECTION 4: QUERY OPTIMIZATION PATTERNS
+-----------------------------------------
+
+Avoid SELECT * — list only the columns you need:
+
+    -- Bad
+    SELECT * FROM todos WHERE user_id = 42;
+
+    -- Good
+    SELECT id, title, priority, due_date FROM todos WHERE user_id = 42;
+
+Avoid functions on indexed columns in WHERE clause:
+
+    -- Bad — cannot use index on created_at
+    WHERE DATE_TRUNC('day', created_at) = '2026-04-01';
+
+    -- Good — uses index on created_at
+    WHERE created_at >= '2026-04-01' AND created_at < '2026-04-02';
+
+Use EXISTS instead of COUNT for existence checks:
+
+    -- Bad — counts all matching rows just to check if any exist
+    IF (SELECT COUNT(*) FROM todos WHERE user_id = 42 AND priority = 'high') > 0
+
+    -- Good — stops at the first match
+    IF EXISTS (SELECT 1 FROM todos WHERE user_id = 42 AND priority = 'high')
+
+Use JOIN instead of correlated subqueries:
+
+    -- Bad — correlated subquery runs once per row
+    SELECT id, title,
+           (SELECT COUNT(*) FROM todo_tags tt WHERE tt.todo_id = t.id) AS tag_count
+    FROM todos t;
+
+    -- Good — single join
+    SELECT t.id, t.title, COUNT(tt.tag_id) AS tag_count
+    FROM todos t
+    LEFT JOIN todo_tags tt ON tt.todo_id = t.id
+    GROUP BY t.id, t.title;
+
+LIMIT without ORDER BY is non-deterministic — always pair them:
+
+    SELECT * FROM todos ORDER BY created_at DESC LIMIT 10;
+
+Pagination — avoid OFFSET for large offsets (scans all skipped rows):
+
+    -- Bad for large pages
+    SELECT * FROM todos ORDER BY id LIMIT 20 OFFSET 10000;
+
+    -- Good — keyset/cursor pagination
+    SELECT * FROM todos WHERE id > :last_seen_id ORDER BY id LIMIT 20;
+
+---
+
+SECTION 5: CONFIGURATION TUNING
+----------------------------------
+
+Key settings in postgresql.conf to tune for a dedicated database server
+(adjust based on your actual RAM — example assumes 16 GB):
+
+    # Memory
+    shared_buffers = 4GB               # 25% of RAM
+    effective_cache_size = 12GB        # 75% of RAM (planner hint, not allocation)
+    work_mem = 64MB                    # per sort/hash operation (can be many at once)
+    maintenance_work_mem = 1GB         # for VACUUM, CREATE INDEX, etc.
+
+    # Write performance
+    wal_buffers = 64MB
+    checkpoint_completion_target = 0.9
+    max_wal_size = 4GB
+
+    # Parallelism (for analytical queries)
+    max_parallel_workers_per_gather = 4
+    max_parallel_workers = 8
+
+    # Connection pooling (use PgBouncer in production, not raw connections)
+    max_connections = 100
+
+    # Logging (helps find slow queries)
+    log_min_duration_statement = 1000  # log queries slower than 1 second
+    log_lock_waits = on
+    log_temp_files = 0
+
+Apply changes:
+    sudo systemctl reload postgresql
+    -- or for changes requiring restart:
+    sudo systemctl restart postgresql
+
+---
+
+SECTION 6: VACUUMING AND TABLE BLOAT
+---------------------------------------
+
+PostgreSQL uses MVCC — deleted/updated rows leave dead tuples. VACUUM reclaims them.
+
+Check table bloat:
+
+    SELECT
+        relname AS table,
+        n_live_tup AS live_rows,
+        n_dead_tup AS dead_rows,
+        ROUND(100.0 * n_dead_tup / NULLIF(n_live_tup + n_dead_tup, 0), 1) AS dead_pct,
+        last_vacuum,
+        last_autovacuum
+    FROM pg_stat_user_tables
+    ORDER BY n_dead_tup DESC;
+
+Manual vacuum (non-blocking):
+
+    VACUUM todos;
+
+Full vacuum (reclaims disk space, but locks table — use only during maintenance):
+
+    VACUUM FULL todos;
+
+Aggressive autovacuum for frequently updated tables:
+
+    ALTER TABLE todos SET (
+        autovacuum_vacuum_scale_factor = 0.01,   -- vacuum when 1% of rows are dead
+        autovacuum_analyze_scale_factor = 0.005   -- analyze when 0.5% of rows change
+    );
+
+---
+
+SECTION 7: MONITORING QUERIES
+--------------------------------
+
+Table sizes:
+
+    SELECT
+        relname AS table,
+        pg_size_pretty(pg_total_relation_size(relid)) AS total,
+        pg_size_pretty(pg_relation_size(relid)) AS table_only,
+        pg_size_pretty(pg_total_relation_size(relid) - pg_relation_size(relid)) AS indexes
+    FROM pg_catalog.pg_statio_user_tables
+    ORDER BY pg_total_relation_size(relid) DESC;
+
+Active queries and locks:
+
+    SELECT pid, now() - pg_stat_activity.query_start AS duration, query, state
+    FROM pg_stat_activity
+    WHERE state != 'idle' AND query_start < NOW() - INTERVAL '5 seconds'
+    ORDER BY duration DESC;
+
+Kill a long-running query:
+
+    SELECT pg_cancel_backend(pid);   -- graceful
+    SELECT pg_terminate_backend(pid); -- force
+
+Cache hit rate (should be above 99% for OLTP workloads):
+
+    SELECT
+        SUM(heap_blks_hit) / NULLIF(SUM(heap_blks_hit) + SUM(heap_blks_read), 0) AS table_hit_rate,
+        SUM(idx_blks_hit) / NULLIF(SUM(idx_blks_hit) + SUM(idx_blks_read), 0) AS index_hit_rate
+    FROM pg_statio_user_tables;
+
+Lock waits:
+
+    SELECT
+        blocked.pid AS blocked_pid,
+        blocking.pid AS blocking_pid,
+        blocked.query AS blocked_query,
+        blocking.query AS blocking_query
+    FROM pg_stat_activity blocked
+    JOIN pg_stat_activity blocking ON blocking.pid = ANY(pg_blocking_pids(blocked.pid))
+    WHERE cardinality(pg_blocking_pids(blocked.pid)) > 0;
