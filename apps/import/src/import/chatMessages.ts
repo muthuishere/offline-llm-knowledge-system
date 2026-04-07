@@ -6,68 +6,105 @@ export interface WebLLMMessage {
 }
 
 // WebLLM uses ~4 chars per token. Phi-3-mini has a 4096-token context window.
-// We reserve ~500 tokens for model output → usable budget ≈ 3500 tokens ≈ 14000 chars.
+// Reserve ~500 tokens for model output → usable budget ≈ 3500 tokens ≈ 14000 chars.
 const MAX_PROMPT_CHARS = 14_000
 
-// Chunks live in the user message, right beside the question.
-// Research: Phi-3-mini RAG best practice is 250–350 tokens per chunk ≈ 1,000–1,400 chars.
-// 400-char cap was cutting answers mid-sentence, causing Phi to echo the question fragment.
+// Per-chunk text cap (applies to both RAG and graph slots).
 const MAX_CHUNK_CHARS = 1_100
 
-// System prompt is kept tiny and static for small models (Phi, Gemma-2B).
-// Only the first paragraph of system_instructions is used — no markdown headers.
-// Target ≤ 150 tokens (~120 words). Phi-3 processes system via <|system|> token wrapping.
+// System prompt cap — kept tiny and static for small models.
 const MAX_SYSTEM_CHARS = 300
 
-// RAG-specific suffix appended to the extracted identity.
-// Research (Amara, 2025-04-05):
-//   - "Write in complete sentences" prevents terse 3-word bullet collapse in Phi
-//   - "Do not repeat the question" suppresses Phi's echo-on-thin-context behaviour
-//   - Explicit fallback reduces confabulation when retrieval score is low
-const RAG_SUFFIX = ' Write in complete sentences. Do not repeat the question. If the documents do not contain the answer, say so.'
+// Slot budgets (chars). Order in user turn: wiki → graph → RAG.
+// wiki:  ~800 tokens  → 3200 chars  (fixed cap, first slot, highest priority)
+// graph: ~1750 tokens → 7000 chars  (50% of retrieval budget)
+// rag:   ~875 tokens  → 3500 chars  (25% of retrieval budget)
+const MAX_WIKI_CHARS = 3_200
+const MAX_GRAPH_CHARS = 7_000
+const MAX_RAG_CHARS = 3_500
 
-/** Extract the first plain-text paragraph from system instructions (before any ## heading or bullet list). */
+// RAG-specific suffix appended to the extracted identity.
+const RAG_SUFFIX =
+  ' Write in complete sentences. Do not repeat the question.' +
+  ' If the documents do not contain the answer, say so.'
+
+/** Extract the first plain-text paragraph from system instructions. */
 function extractSystemIdentity(raw: string): string {
-  // Split at first heading or bullet block — we only want the prose identity sentence(s)
   const firstSection = raw.split(/\n##|\n#|\n-\s|\n\*/)[0].trim()
-  const identity = firstSection.length > MAX_SYSTEM_CHARS
-    ? firstSection.slice(0, MAX_SYSTEM_CHARS).trimEnd() + '…'
-    : firstSection
+  const identity =
+    firstSection.length > MAX_SYSTEM_CHARS
+      ? firstSection.slice(0, MAX_SYSTEM_CHARS).trimEnd() + '…'
+      : firstSection
   return identity + RAG_SUFFIX
+}
+
+/**
+ * Format a list of chunks into a labelled text block, respecting a total char budget.
+ * Stops adding chunks once the budget is exhausted.
+ */
+function formatChunks(chunks: Chunk[], maxTotalChars: number, label: string): string {
+  const parts: string[] = []
+  let used = 0
+  for (let i = 0; i < chunks.length; i++) {
+    const text =
+      chunks[i].text.length > MAX_CHUNK_CHARS
+        ? chunks[i].text.slice(0, MAX_CHUNK_CHARS).trimEnd() + '…'
+        : chunks[i].text
+    const entry = `[${label} ${i + 1} — ${chunks[i].source}]\n${text}`
+    if (used + entry.length > maxTotalChars) break
+    parts.push(entry)
+    used += entry.length
+  }
+  return parts.join('\n\n')
 }
 
 export function buildChatMessages(
   messages: ChatMessage[],
   query: string,
-  chunks: Chunk[],
+  ragChunks: Chunk[],
   manifest: Manifest | null,
+  extra?: { wikiContent?: string; graphChunks?: Chunk[] },
 ): WebLLMMessage[] {
-  // System prompt: tiny and static. Never truncated mid-thought, never changes between turns.
-  const rawInstructions = manifest?.system_instructions?.trim() || 'You are a helpful assistant.'
+  // System prompt: tiny and static.
+  const rawInstructions =
+    manifest?.system_instructions?.trim() || 'You are a helpful assistant.'
   const systemContent = extractSystemIdentity(rawInstructions)
 
-  // Context goes in the user message — right next to the question.
-  // Small models (Phi) attend to user-turn content far better than distant system content.
-  const truncatedChunks = chunks.map((c, i) => {
-    const text = c.text.length > MAX_CHUNK_CHARS
-      ? c.text.slice(0, MAX_CHUNK_CHARS).trimEnd() + '…'
-      : c.text
-    return `[DOC ${i + 1} — ${c.source}]\n${text}`
-  })
+  // Slot 1 — Wiki (highest priority, first in context)
+  const wikiText = extra?.wikiContent
+    ? `[WIKI]\n${extra.wikiContent.slice(0, MAX_WIKI_CHARS)}`
+    : ''
 
-  const userContent = chunks.length > 0
-    ? `Context:\n${truncatedChunks.join('\n\n')}\n\nQuestion: ${query}`
-    : query
+  // Slot 2 — Graph neighborhood (50% of retrieval budget)
+  const graphText =
+    extra?.graphChunks?.length
+      ? `[GRAPH CONTEXT]\n${formatChunks(extra.graphChunks, MAX_GRAPH_CHARS, 'GRAPH')}`
+      : ''
 
-  // History budget: drop oldest [user, assistant] pairs without mercy until we fit.
-  // Never truncate mid-message — a half-message confuses small models more than no history.
+  // Slot 3 — RAG chunks (25% of retrieval budget)
+  const ragText = ragChunks.length
+    ? `[RETRIEVED DOCS]\n${formatChunks(ragChunks, MAX_RAG_CHARS, 'DOC')}`
+    : ''
+
+  const contextParts = [wikiText, graphText, ragText].filter(Boolean)
+  const userContent =
+    contextParts.length > 0
+      ? `${contextParts.join('\n\n')}\n\nQuestion: ${query}`
+      : query
+
+  // History budget: drop oldest [user, assistant] pairs until we fit.
   let history: WebLLMMessage[] = messages.map((m) => ({ role: m.role, content: m.content }))
   const calcTotal = (hist: WebLLMMessage[]) =>
-    systemContent.length + hist.reduce((n, m) => n + m.content.length, 0) + userContent.length
+    systemContent.length +
+    hist.reduce((n, m) => n + m.content.length, 0) +
+    userContent.length
 
   while (calcTotal(history) > MAX_PROMPT_CHARS && history.length >= 2) {
-    history = history.slice(2) // drop oldest user+assistant pair
-    console.log('[chatMessages] History trimmed: dropped oldest message pair, remaining:', history.length)
+    history = history.slice(2)
+    console.log(
+      '[chatMessages] History trimmed: dropped oldest message pair, remaining:',
+      history.length,
+    )
   }
 
   const result: WebLLMMessage[] = [
@@ -76,11 +113,14 @@ export function buildChatMessages(
     { role: 'user', content: userContent },
   ]
 
-  console.log('[chatMessages] system:', systemContent.length,
-    'chars | history:', history.length,
-    'msgs | user+ctx:', userContent.length,
-    'chars | chunks:', chunks.length,
-    '(each ≤', MAX_CHUNK_CHARS, 'chars) | total:', calcTotal(history))
+  console.log(
+    '[chatMessages] system:', systemContent.length,
+    'chars | wiki:', wikiText.length,
+    '| graph:', graphText.length,
+    '| rag:', ragText.length,
+    '| history:', history.length, 'msgs',
+    '| total:', calcTotal(history), 'chars',
+  )
 
   return result
 }

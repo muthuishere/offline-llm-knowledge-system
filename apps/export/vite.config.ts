@@ -4,7 +4,8 @@ import wasm from 'vite-plugin-wasm'
 import topLevelAwait from 'vite-plugin-top-level-await'
 
 export default defineConfig({
-  base: '/',
+  base: process.env.NODE_ENV === 'production' ? '/offline-llm-knowledge-system/export/' : '/',
+  build: { outDir: '../../docs/export', emptyOutDir: true },
   server: { port: 5198 },
   plugins: [react(), wasm(), topLevelAwait()],
   optimizeDeps: {

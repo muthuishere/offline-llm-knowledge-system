@@ -11,6 +11,7 @@ import {
   CHUNK_OVERLAP,
 } from '../types'
 import { chunkText } from '../lib/chunking'
+import { buildGraphEdges } from '../lib/graphBuilder'
 
 // ---------------------------------------------------------------------------
 // Worker message helper
@@ -248,6 +249,15 @@ export function useExportPipeline() {
         }
       }
 
+      // ── Step 2.5: Build semantic knowledge graph ────────────────────────────
+      setCurrentFile('Building knowledge graph...')
+      const graphEdges = buildGraphEdges(allChunks)
+      const graphBytes = new TextEncoder().encode(
+        JSON.stringify({ version: '1.0', edges: graphEdges }),
+      )
+      console.log(`[Export] graph: ${graphEdges.length} edges from ${allChunks.length} chunks`)
+      setProgress(61)
+
       // ── Step 3: Build Orama index ───────────────────────────────────────────
       setStage('indexing')
       setCurrentFile(null)
@@ -324,6 +334,7 @@ export function useExportPipeline() {
         { path: 'manifest.json', data: manifestBytes },
         { path: 'chunks.json', data: chunksBytes },
         { path: 'orama-index.json.gz', data: oramaGzipped },
+        { path: 'graph.json', data: graphBytes },
       ]
       if (systemInstructions) {
         kbEntries.push({

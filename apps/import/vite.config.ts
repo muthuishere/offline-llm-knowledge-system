@@ -48,7 +48,8 @@ function onnxWasmPlugin(): Plugin {
 }
 
 export default defineConfig({
-  base: '/',
+  base: process.env.NODE_ENV === 'production' ? '/offline-llm-knowledge-system/import/' : '/',
+  build: { outDir: '../../docs/import', emptyOutDir: true },
   server: { port: 5199 },
   plugins: [react(), wasm(), topLevelAwait(), onnxWasmPlugin()],
   optimizeDeps: {

@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { gunzipSync } from 'fflate'
 import { insertMultiple } from '@orama/orama'
 import { readFile, clearKnowledgeBase as opfsClear } from './opfs'
-import type { Chunk, ImportStage, Manifest } from '../types'
+import type { Chunk, ImportStage, Manifest, GraphEdge } from '../types'
 
 export function useImportPipeline(): {
   stage: ImportStage
@@ -12,12 +12,16 @@ export function useImportPipeline(): {
   clearKnowledgeBase: () => Promise<void>
   oramaDb: any | null
   manifest: Manifest | null
+  chunks: Chunk[]
+  graphEdges: GraphEdge[]
 } {
   const [stage, setStage] = useState<ImportStage>('idle')
   const [progress, setProgress] = useState(0)
   const [error, setError] = useState<string | null>(null)
   const [oramaDb, setOramaDb] = useState<any | null>(null)
   const [manifest, setManifest] = useState<Manifest | null>(null)
+  const [chunks, setChunks] = useState<Chunk[]>([])
+  const [graphEdges, setGraphEdges] = useState<GraphEdge[]>([])
 
   const importZip = useCallback(async (file: File): Promise<void> => {
     try {
@@ -87,12 +91,18 @@ export function useImportPipeline(): {
       console.log('[Import] Loading Orama index from OPFS...')
 
       const chunksBytes = await readFile(mf.manifest_hash, 'chunks.json')
-      const chunks = JSON.parse(new TextDecoder().decode(chunksBytes)) as Chunk[]
+      const loadedChunks = JSON.parse(new TextDecoder().decode(chunksBytes)) as Chunk[]
       const indexGz = await readFile(mf.manifest_hash, 'orama-index.json.gz').catch(() => null)
       if (indexGz) {
         // Keep parsing the saved index as a lightweight integrity check for the import payload.
         gunzipSync(indexGz)
       }
+
+      // Load graph edges
+      const graphBytes = await readFile(mf.manifest_hash, 'graph.json')
+      const graphData = JSON.parse(new TextDecoder().decode(graphBytes))
+      const loadedEdges: GraphEdge[] = graphData.edges
+      console.log(`[Import] Graph loaded: ${loadedEdges.length} edges`)
 
       const { create } = await import('@orama/orama')
       const db = await create({
@@ -106,13 +116,15 @@ export function useImportPipeline(): {
       })
       await insertMultiple(
         db,
-        chunks.map((chunk) => ({
+        loadedChunks.map((chunk) => ({
           id: chunk.id,
           source: chunk.source,
           text: chunk.text,
           vector: chunk.vector,
         })),
       )
+      setChunks(loadedChunks)
+      setGraphEdges(loadedEdges)
       setOramaDb(db)
       setProgress(92)
       console.log('[Import] Orama index ready.')
@@ -133,6 +145,8 @@ export function useImportPipeline(): {
       await opfsClear()
       setOramaDb(null)
       setManifest(null)
+      setChunks([])
+      setGraphEdges([])
       setProgress(0)
       setError(null)
       setStage('idle')
@@ -141,5 +155,5 @@ export function useImportPipeline(): {
     }
   }, [])
 
-  return { stage, progress, error, importZip, clearKnowledgeBase, oramaDb, manifest }
+  return { stage, progress, error, importZip, clearKnowledgeBase, oramaDb, manifest, chunks, graphEdges }
 }

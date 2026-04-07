@@ -5,7 +5,7 @@ import ChatInterface from '../import/ChatInterface'
 import { useCacheSize, formatCacheSize } from '../lib/useCacheSize'
 
 export default function ImportPage() {
-  const { stage, progress, error, importZip, clearKnowledgeBase, oramaDb, manifest } =
+  const { stage, progress, error, importZip, clearKnowledgeBase, oramaDb, manifest, chunks, graphEdges } =
     useImportPipeline()
   const { info: cacheInfo, refresh: refreshCache } = useCacheSize()
 
@@ -160,7 +160,13 @@ export default function ImportPage() {
 
         {/* loading-model or ready: hand off to ChatInterface (has its own model loading indicator) */}
         {showChat && (
-          <ChatInterface oramaDb={oramaDb} manifest={manifest} onClear={clearKnowledgeBase} />
+          <ChatInterface
+            oramaDb={oramaDb}
+            manifest={manifest}
+            onClear={clearKnowledgeBase}
+            chunks={chunks}
+            graphEdges={graphEdges}
+          />
         )}
       </main>
     </div>

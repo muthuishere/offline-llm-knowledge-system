@@ -1,15 +1,19 @@
-import { useState, useRef, useCallback, useEffect } from 'react'
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useWebLLM } from './useWebLLM'
 import { useHybridSearch } from './useHybridSearch'
 import { useEmbedWorker } from './useEmbedWorker'
 import { buildChatMessages } from './chatMessages'
-import type { ChatMessage, Chunk, Manifest } from '../types'
+import { buildAdjacency, graphBFS, getChunksByIds } from './graphSearch'
+import { fetchWikiPage } from './wikiCache'
+import type { ChatMessage, Chunk, Manifest, GraphEdge } from '../types'
 
 interface ChatInterfaceProps {
   oramaDb: any | null
   manifest: Manifest | null
   onClear: () => void
+  chunks: Chunk[]
+  graphEdges: GraphEdge[]
 }
 
 interface MessageWithSources {
@@ -20,7 +24,7 @@ interface MessageWithSources {
 }
 
 
-export default function ChatInterface({ oramaDb, manifest, onClear }: ChatInterfaceProps) {
+export default function ChatInterface({ oramaDb, manifest, onClear, chunks, graphEdges }: ChatInterfaceProps) {
   const [messages, setMessages] = useState<MessageWithSources[]>([])
   // Ref keeps messages accessible in useEffect/callbacks without being a dep
   const messagesRef = useRef<MessageWithSources[]>([])
@@ -36,6 +40,12 @@ export default function ChatInterface({ oramaDb, manifest, onClear }: ChatInterf
   const { engine, loading: modelLoading, loadModel, chat } = useWebLLM()
   const { search } = useHybridSearch(oramaDb)
   const { embedQuery } = useEmbedWorker()
+
+  // Build adjacency map once when graphEdges arrive — O(edges), stable across renders
+  const adjacency = useMemo(
+    () => (graphEdges.length > 0 ? buildAdjacency(graphEdges) : new Map<string, string[]>()),
+    [graphEdges],
+  )
 
   // Derive modelReady from engine presence — not from loadModel() resolving.
   // This is the only correct source of truth: the engine object IS the signal.
@@ -83,34 +93,60 @@ export default function ChatInterface({ oramaDb, manifest, onClear }: ChatInterf
       // 1. Embed query
       const queryVector = await embedQuery(query)
 
-      // 2. Hybrid search
-      const chunks = await search(query, queryVector)
+      // 2. Hybrid search (RAG)
+      const ragChunks = await search(query, queryVector)
 
-      // Update sources on placeholder
+      // 2a. Graph BFS — expand RAG results through semantic similarity edges
+      let graphChunks: Chunk[] = []
+      if (adjacency.size > 0 && chunks.length > 0) {
+        const ragIds = ragChunks.map((c) => c.id)
+        const expandedIds = graphBFS(adjacency, ragIds, 2)
+        const ragIdSet = new Set(ragIds)
+        // Graph slot: expanded neighbors only (RAG chunks already in their own slot)
+        graphChunks = getChunksByIds(chunks, expandedIds).filter((c) => !ragIdSet.has(c.id))
+      }
+
+      // 2b. Wiki page — lazy OPFS-cached synthesis for top-1 source document
+      let wikiContent = ''
+      if (engine && manifest && ragChunks.length > 0) {
+        const topSource = ragChunks[0].source
+        const contextText = ragChunks.map((c) => c.text).join('\n\n')
+        wikiContent = await fetchWikiPage(topSource, manifest.manifest_hash, engine, contextText)
+      }
+
+      // Update sources on placeholder (show RAG hits)
       setMessages((prev) => {
         const updated = [...prev]
         const last = updated[updated.length - 1]
         if (last.role === 'assistant') {
-          updated[updated.length - 1] = { ...last, sources: chunks }
+          updated[updated.length - 1] = { ...last, sources: ragChunks }
         }
         return updated
       })
 
-      // 3. Build OpenAI-style messages for WebLLM.
+      // 3. Build OpenAI-style messages — wiki → graph → RAG order in user turn.
       // Filter out error messages — they should never appear as assistant turns
       // in the model's conversation history (they confuse small models badly).
       const history: ChatMessage[] = messages
         .filter((m) => !(m.role === 'assistant' && m.content.startsWith('Error:')))
         .map((m) => ({ role: m.role, content: m.content }))
-      const chatMessages = buildChatMessages(history, query, chunks, manifest)
+      const chatMessages = buildChatMessages(history, query, ragChunks, manifest, {
+        wikiContent,
+        graphChunks,
+      })
 
       // Debug logging — helps diagnose quality issues with small models
       console.group('[Chat] Sending to model')
       console.log('Query:', query)
-      console.log(`Context chunks (${chunks.length}):`, chunks.map(c => ({
+      console.log(`RAG chunks (${ragChunks.length}):`, ragChunks.map((c) => ({
         source: c.source,
         preview: c.text.slice(0, 100),
       })))
+      console.log(`Graph chunks (${graphChunks.length}):`, graphChunks.map((c) => ({
+        source: c.source,
+        preview: c.text.slice(0, 100),
+      })))
+      console.log(`Wiki content (${wikiContent.length} chars):`, wikiContent.slice(0, 200))
       console.log('System prompt:', chatMessages[0]?.content?.slice(0, 500))
       console.log('Full messages:', JSON.stringify(chatMessages, null, 2))
       console.groupEnd()
@@ -159,7 +195,7 @@ export default function ChatInterface({ oramaDb, manifest, onClear }: ChatInterf
     } finally {
       setIsStreaming(false)
     }
-  }, [input, isStreaming, engine, modelReady, embedQuery, search, chat, messages])
+  }, [input, isStreaming, engine, modelReady, embedQuery, search, chat, messages, adjacency, chunks, manifest])
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -201,8 +237,8 @@ export default function ChatInterface({ oramaDb, manifest, onClear }: ChatInterf
     const doAsk = async (query: string): Promise<string> => {
       if (!guard('ask')) return ''
       console.time('[kb.ask] total')
-      const chunks = await doSearch(query)
-      const msgs = buildChatMessages([], query, chunks, manifest)
+      const ragChunksInner = await doSearch(query)
+      const msgs = buildChatMessages([], query, ragChunksInner, manifest)
       console.log('[kb.ask] messages:', JSON.stringify(msgs, null, 2))
       let output = ''
       const stream = await engine!.chat.completions.create({ messages: msgs, stream: true, max_tokens: 512 })
@@ -220,20 +256,20 @@ export default function ChatInterface({ oramaDb, manifest, onClear }: ChatInterf
 
       search: async (query: string) => {
         if (!guard('search')) return []
-        const chunks = await doSearch(query)
-        console.table(chunks.map((c, i) => ({
+        const results = await doSearch(query)
+        console.table(results.map((c, i) => ({
           doc: i + 1,
           source: c.source,
           chars: c.text.length,
           preview: c.text.slice(0, 120).replace(/\n/g, ' '),
         })))
-        return chunks
+        return results
       },
 
       prompt: async (query: string) => {
         if (!guard('prompt')) return null
-        const chunks = await doSearch(query)
-        const msgs = buildChatMessages([], query, chunks, manifest)
+        const ragResults = await doSearch(query)
+        const msgs = buildChatMessages([], query, ragResults, manifest)
         console.group('[kb.prompt] Full message array')
         msgs.forEach((m, i) => console.log(`[${i}] ${m.role} (${m.content.length} chars):\n${m.content}`))
         console.groupEnd()
