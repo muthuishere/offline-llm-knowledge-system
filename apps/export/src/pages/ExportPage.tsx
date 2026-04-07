@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { DEFAULT_CHAT_MODEL, type ChatModelId } from '../types'
 import { useCacheSize, formatCacheSize } from '../lib/useCacheSize'
 import ModelPicker from '../export/ModelPicker'
@@ -15,6 +15,12 @@ export default function ExportPage() {
   const [selectedModel, setSelectedModel] = useState<ChatModelId>(DEFAULT_CHAT_MODEL)
   const [files, setFiles] = useState<File[]>([])
   const [instructions, setInstructions] = useState(DEFAULT_INSTRUCTIONS)
+  const [infoOpen, setInfoOpen] = useState(false)
+  const [infoTab, setInfoTab] = useState<'functional' | 'technical'>('functional')
+
+  const closeInfo = useCallback((e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).dataset.backdrop) setInfoOpen(false)
+  }, [])
 
   const { stage, progress, currentFile, error, estimatedSizeBytes, startExport, updateEstimatedSize } =
     useExportPipeline()
@@ -64,6 +70,56 @@ export default function ExportPage() {
 
   return (
     <div style={styles.page}>
+      {/* Info modal */}
+      {infoOpen && (
+        <div style={styles.backdrop} data-backdrop="1" onClick={closeInfo}>
+          <div style={styles.modal}>
+            <div style={styles.modalHeader}>
+              <span style={styles.modalTitle}>About this app</span>
+              <button style={styles.modalClose} onClick={() => setInfoOpen(false)}>✕</button>
+            </div>
+            <div style={styles.tabs}>
+              {(['functional', 'technical'] as const).map(tab => (
+                <button
+                  key={tab}
+                  style={styles.tab(infoTab === tab)}
+                  onClick={() => setInfoTab(tab)}
+                >
+                  {tab === 'functional' ? 'What it does' : 'How it works'}
+                </button>
+              ))}
+            </div>
+            <div style={styles.modalBody}>
+              {infoTab === 'functional' ? (
+                <div style={styles.infoContent}>
+                  <p style={styles.infoLead}>Build a portable, self-contained knowledge base that runs offline in any browser.</p>
+                  <div style={styles.stepItems}>
+                    <div style={styles.stepItem}><span style={styles.stepIcon}>📄</span><div><strong>Add your documents</strong><br/>PDF, DOCX, Markdown, and plain text. Drop as many as you need.</div></div>
+                    <div style={styles.stepItem}><span style={styles.stepIcon}>🎛️</span><div><strong>Choose a chat model</strong><br/>Smaller = faster download, larger = better answers. Gemma-2B is a good default.</div></div>
+                    <div style={styles.stepItem}><span style={styles.stepIcon}>⚙️</span><div><strong>Optionally set system instructions</strong><br/>Defines how the assistant behaves. Keep it under 200 chars for small models.</div></div>
+                    <div style={styles.stepItem}><span style={styles.stepIcon}>📦</span><div><strong>Click Export</strong><br/>The browser builds and saves a self-contained zip (~700 MB – 2.2 GB depending on model).</div></div>
+                    <div style={styles.stepItem}><span style={styles.stepIcon}>✈️</span><div><strong>Use it anywhere, forever</strong><br/>Copy the zip to any machine. Drop it in the Import app. No internet ever needed again.</div></div>
+                  </div>
+                </div>
+              ) : (
+                <div style={styles.infoContent}>
+                  <p style={styles.infoLead}>Everything runs in the browser across three Web Workers — the main thread only drives the UI.</p>
+                  <div style={styles.techItems}>
+                    <div style={styles.techItem}><span style={styles.techLabel}>document-worker</span>Parses PDF (pdfjs-dist), DOCX (mammoth), MD, TXT to plain text off-thread.</div>
+                    <div style={styles.techItem}><span style={styles.techLabel}>embed-worker</span>Chunks text to 100 tokens. Embeds each chunk with bge-small-en-v1.5-q8 (ONNX via Transformers.js) → 384-dim normalised vectors.</div>
+                    <div style={styles.techItem}><span style={styles.techLabel}>Knowledge graph</span>Cosine similarity (dot product, already normalised) between all chunk pairs. Edges ≥ 0.75 → graph.json. Zero extra LLM calls.</div>
+                    <div style={styles.techItem}><span style={styles.techLabel}>Search index</span>Orama BM25 + vector hybrid index, serialised and gzip-compressed to orama-index.json.gz.</div>
+                    <div style={styles.techItem}><span style={styles.techLabel}>zip-worker + fflate</span>Streams compressed output directly to disk via File System Access API (showSaveFilePicker). The full zip is never buffered in RAM — even for a 1.3 GB bundle.</div>
+                    <div style={styles.techItem}><span style={styles.techLabel}>Embed cache trick</span>After Transformers.js loads, its Cache API entries (the ONNX weights) are captured and bundled as embed-cache/. Import restores them → zero network calls for the embedding model.</div>
+                    <div style={styles.techItem}><span style={styles.techLabel}>Model weights</span>zip-worker fetches safetensors shards + WebGPU WASM kernel from the WebLLM CDN, streaming straight into the zip without touching main-thread RAM.</div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header style={styles.header}>
         <div style={styles.headerInner}>
@@ -73,17 +129,20 @@ export default function ExportPage() {
               Package documents + a chat model into a portable, offline-ready zip.
             </p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
-            <button
-              onClick={handleClearCache}
-              disabled={isRunning}
-              style={styles.clearCacheBtn}
-            >
-              Clear cache · {formatCacheSize(cacheInfo)}
-            </button>
-            <span style={{ fontSize: 11, color: 'var(--muted)' }}>
-              port 5198 only — import app (5199) has its own cache
-            </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <button onClick={() => setInfoOpen(true)} style={styles.infoBtn} title="About this app">?</button>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+              <button
+                onClick={handleClearCache}
+                disabled={isRunning}
+                style={styles.clearCacheBtn}
+              >
+                Clear cache · {formatCacheSize(cacheInfo)}
+              </button>
+              <span style={{ fontSize: 11, color: 'var(--muted)' }}>
+                port 5198 only — import app (5199) has its own cache
+              </span>
+            </div>
           </div>
         </div>
       </header>
@@ -164,20 +223,6 @@ export default function ExportPage() {
           </div>
         </div>
 
-        {/* Info box */}
-        <aside style={styles.infoBox}>
-          <h3 style={styles.infoTitle}>What happens during export?</h3>
-          <ol style={styles.infoList}>
-            <li>Documents are parsed to plain text</li>
-            <li>Text is chunked and embedded (bge-small-en-v1.5)</li>
-            <li>A hybrid search index is built with Orama</li>
-            <li>Chat model files are fetched from the WebLLM CDN</li>
-            <li>Everything is packaged into a single zip (~1–3 GB)</li>
-          </ol>
-          <p style={styles.infoNote}>
-            The zip is self-contained — no internet required to use it.
-          </p>
-        </aside>
       </main>
     </div>
   )
@@ -262,35 +307,138 @@ const styles = {
     fontSize: 13,
     color: 'var(--muted)',
   },
-  infoBox: {
-    background: 'rgba(99,102,241,0.06)',
-    border: '1px solid rgba(99,102,241,0.2)',
-    borderRadius: 10,
+  infoBtn: {
+    width: 32,
+    height: 32,
+    borderRadius: '50%',
+    border: '1px solid var(--border)',
+    background: 'var(--surface)',
+    color: 'var(--muted)',
+    fontSize: 14,
+    fontWeight: 700,
+    cursor: 'pointer',
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  } as React.CSSProperties,
+  backdrop: {
+    position: 'fixed' as const,
+    inset: 0,
+    background: 'rgba(0,0,0,0.65)',
+    zIndex: 50,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  modal: {
+    background: 'var(--surface)',
+    border: '1px solid var(--border)',
+    borderRadius: 12,
+    width: '100%',
+    maxWidth: 560,
+    maxHeight: '80vh',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    overflow: 'hidden',
+  },
+  modalHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '16px 20px',
+    borderBottom: '1px solid var(--border)',
+    flexShrink: 0,
+  },
+  modalTitle: {
+    fontSize: 15,
+    fontWeight: 700,
+    color: 'var(--text)',
+  },
+  modalClose: {
+    background: 'none',
+    border: 'none',
+    color: 'var(--muted)',
+    fontSize: 16,
+    cursor: 'pointer',
+    padding: '2px 6px',
+    borderRadius: 4,
+  } as React.CSSProperties,
+  tabs: {
+    display: 'flex',
+    borderBottom: '1px solid var(--border)',
+    flexShrink: 0,
+  },
+  tab: (active: boolean): React.CSSProperties => ({
+    flex: 1,
+    padding: '10px 16px',
+    fontSize: 13,
+    fontWeight: 600,
+    background: 'none',
+    border: 'none',
+    borderBottom: active ? '2px solid var(--accent)' : '2px solid transparent',
+    color: active ? 'var(--text)' : 'var(--muted)',
+    cursor: 'pointer',
+    transition: 'color 0.15s',
+  }),
+  modalBody: {
+    overflowY: 'auto' as const,
+    flex: 1,
+  },
+  infoContent: {
     padding: '20px 24px',
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: 16,
+  },
+  infoLead: {
+    fontSize: 14,
+    color: 'var(--muted)',
+    lineHeight: 1.65,
+  },
+  stepItems: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: 14,
+  },
+  stepItem: {
+    display: 'flex',
+    gap: 12,
+    fontSize: 13,
+    color: 'var(--muted)',
+    lineHeight: 1.6,
+  } as React.CSSProperties,
+  stepIcon: {
+    fontSize: 18,
+    flexShrink: 0,
+    width: 24,
+    textAlign: 'center' as const,
+    marginTop: 1,
+  },
+  techItems: {
     display: 'flex',
     flexDirection: 'column' as const,
     gap: 10,
   },
-  infoTitle: {
-    fontSize: 14,
-    fontWeight: 600,
-    color: 'var(--text)',
-  },
-  infoList: {
-    paddingLeft: 20,
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: 6,
+  techItem: {
     fontSize: 13,
     color: 'var(--muted)',
-    lineHeight: 1.5,
-  },
-  infoNote: {
-    fontSize: 12,
-    color: 'var(--accent)',
-    fontWeight: 500,
-    marginTop: 2,
-  },
+    lineHeight: 1.6,
+    background: 'var(--bg)',
+    border: '1px solid var(--border)',
+    borderRadius: 6,
+    padding: '10px 14px',
+  } as React.CSSProperties,
+  techLabel: {
+    display: 'block',
+    fontSize: 11,
+    fontWeight: 700,
+    color: 'var(--accent-hover)',
+    fontFamily: 'monospace',
+    marginBottom: 3,
+    letterSpacing: 0.3,
+  } as React.CSSProperties,
   clearCacheBtn: {
     background: 'none',
     border: '1px solid var(--danger)',
