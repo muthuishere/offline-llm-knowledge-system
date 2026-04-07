@@ -9390,7 +9390,7 @@ Read more at https://docs.orama.com/docs/orama-js/plugins/plugin-secure-proxy#pl
         const re = await il($.manifest_hash, "graph.json"), he = JSON.parse(new TextDecoder().decode(re)).edges;
         console.log(`[Import] Graph loaded: ${he.length} edges`);
         const { create: G } = await ap(async () => {
-          const { create: ue } = await import("./index-C-0bJB31.js");
+          const { create: ue } = await import("./index-CmSXbFkC.js");
           return {
             create: ue
           };
@@ -15789,7 +15789,7 @@ Read more at https://docs.orama.com/docs/orama-js/plugins/plugin-secure-proxy#pl
   function Hx() {
     const t = ye.useRef(null), r = ye.useRef(false), i = ye.useRef(/* @__PURE__ */ new Map());
     return ye.useEffect(() => {
-      const u = new Worker(new URL("/offline-llm-knowledge-system/import/assets/embed-query-worker-B5za7fZ3.js", import.meta.url), {
+      const u = new Worker(new URL("/offline-llm-knowledge-system/import/assets/embed-query-worker-Cgwmtpnr.js", import.meta.url), {
         type: "module"
       });
       return t.current = u, u.onmessage = (a) => {

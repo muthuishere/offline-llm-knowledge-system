@@ -1,0 +1,103 @@
+BROWSER AND SYSTEM REQUIREMENTS
+================================
+
+SUPPORTED BROWSERS
+------------------
+Chrome 113 or later          RECOMMENDED
+Microsoft Edge 113 or later  SUPPORTED
+Firefox                      NOT RECOMMENDED (WebGPU behind flag)
+Safari 18+                   PARTIAL (limited File System Access API)
+Mobile browsers              NOT SUPPORTED (WebGPU unavailable)
+
+REQUIRED WEB APIS
+-----------------
+WebGPU
+  Used by: @mlc-ai/web-llm for local LLM inference
+  Check: navigator.gpu !== undefined
+  Notes: Chrome/Edge on Windows/Mac/Linux. Requires a GPU with WebGPU driver support.
+
+File System Access API (showSaveFilePicker)
+  Used by: Export app to stream zip directly to disk
+  Check: 'showSaveFilePicker' in window
+  Notes: Requires secure context (localhost or https). Does NOT work on LAN IP addresses.
+
+Origin Private File System (OPFS)
+  Used by: Import app to persist chunks.json and orama-index.json.gz offline
+  Check: navigator.storage.getDirectory !== undefined
+  Notes: Available in all modern browsers. Requires secure context.
+
+SharedArrayBuffer
+  Used by: @huggingface/transformers ONNX runtime (embed worker)
+  Check: typeof SharedArrayBuffer !== 'undefined'
+  Notes: Requires cross-origin isolation headers (COOP + COEP). The app uses
+         coi-serviceworker to inject these headers automatically on localhost.
+
+Web Workers (module type)
+  Used by: document-worker, embed-worker, zip-worker, unzip-worker
+  Check: typeof Worker !== 'undefined'
+
+Cache API
+  Used by: Import app to pre-populate WebLLM model cache
+  Check: 'caches' in window
+  Notes: Must have sufficient storage quota for model size.
+
+ReadableStream (transferable)
+  Used by: Import app transfers file.stream() to unzip-worker
+  Check: Chrome 102+ supports transferable ReadableStream
+
+SYSTEM REQUIREMENTS
+-------------------
+Operating System:
+  Windows 10/11, macOS 12+, Linux (with GPU drivers)
+
+GPU:
+  Any GPU with WebGPU support. Dedicated GPU strongly recommended.
+  TinyLlama (700 MB)   — integrated GPU may work
+  Gemma 2B (1.4 GB)    — dedicated GPU recommended
+  Phi-3-mini (2.2 GB)  — dedicated GPU required
+
+VRAM:
+  Minimum: 1 GB (for TinyLlama)
+  Recommended: 4 GB+ (for Gemma 2B or Phi-3-mini)
+
+Disk Space:
+  Export zip output: 700 MB – 2.5 GB depending on model
+  Cache API (after import): same as zip size
+  OPFS (knowledge base index): a few MB per knowledge base
+
+SECURE CONTEXT REQUIREMENTS
+----------------------------
+showSaveFilePicker and OPFS require a secure context:
+  localhost         WORKS
+  127.0.0.1         WORKS
+  https://...       WORKS
+  http://192.168.x  DOES NOT WORK (LAN IP, not secure)
+  http://0.0.0.0    DOES NOT WORK
+
+CROSS-ORIGIN ISOLATION
+-----------------------
+SharedArrayBuffer requires these HTTP headers:
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+
+On localhost the app uses coi-serviceworker to inject these headers via a
+Service Worker. On first visit there is a page reload to activate the SW.
+
+To verify COI is active:
+  Run in DevTools console: crossOriginIsolated
+  Expected result: true
+
+HOW TO CHECK ALL REQUIREMENTS
+------------------------------
+Run this in the browser console:
+
+console.log({
+  webgpu: !!navigator.gpu,
+  fileSystemAccess: 'showSaveFilePicker' in window,
+  opfs: !!navigator.storage?.getDirectory,
+  sharedArrayBuffer: typeof SharedArrayBuffer !== 'undefined',
+  caches: 'caches' in window,
+  crossOriginIsolated: crossOriginIsolated
+})
+
+All values should be true for full functionality.

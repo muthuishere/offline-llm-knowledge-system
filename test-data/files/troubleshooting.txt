@@ -1,0 +1,115 @@
+TROUBLESHOOTING GUIDE — local-llm-import-export
+================================================
+
+EXPORT APP ISSUES
+-----------------
+
+Problem: File picker does not open / "Must be handling a user gesture"
+Solution: showSaveFilePicker requires a direct user gesture (click). If the file
+picker opens only after async work (parsing, embedding), the gesture context is
+lost. The fix is to call showSaveFilePicker as the very first line of the export
+handler before any awaits.
+
+Problem: Export crashes with out-of-memory error near end of export
+Solution: Never pass model shards through the main thread. The zip-worker must
+fetch model shards directly from HuggingFace using fetch() inside the worker,
+then pipe them through fflate ZipPassThrough. Main thread only handles small KB
+entries (manifest, chunks, index).
+
+Problem: Export hangs at "Parsing..." with no progress
+Solution: The document-worker may have failed to parse a file. Check browser
+console for PARSE_ERROR messages. PDF parsing uses pdfjs-dist — make sure the
+PDF is not password-protected or corrupt. DOCX parsing uses mammoth.js.
+
+Problem: Embed worker INIT times out (30 second timeout)
+Solution:
+1. Check console for errors in the embed-worker context
+2. Verify SharedArrayBuffer is available: type "typeof SharedArrayBuffer" in console
+3. If undefined, the page is not cross-origin isolated — check that coi-serviceworker
+   registered successfully (Application > Service Workers in DevTools)
+4. Hard refresh (Cmd+Shift+R) to re-register the service worker
+
+Problem: "SharedArrayBuffer is not defined" in console
+Solution: The cross-origin isolation service worker (coi-serviceworker) has not
+registered yet. On first load it registers and redirects. Wait for the redirect,
+then the app should work. If not, check that coi-serviceworker is being imported
+in main.tsx and that the service worker is listed as active in DevTools.
+
+Problem: Network errors fetching model from HuggingFace
+Solution: The export app needs internet access to fetch model weights from
+huggingface.co. Check that the CDN URLs in prebuiltAppConfig are reachable.
+Corporate proxies or firewalls may block these requests.
+
+
+IMPORT APP ISSUES
+-----------------
+
+Problem: Import stuck at 0% "Extracting zip to storage..."
+Solution: Extraction runs in unzip-worker.ts. The worker receives a transferred
+ReadableStream. If stuck at 0%, the worker may have crashed silently. Check
+DevTools > Console for worker errors. Also verify the zip was fully written —
+a partial zip (export cancelled mid-way) will fail to parse.
+
+Problem: "Uploading to GPU..." hangs for more than 5 minutes
+Solution:
+1. Check that WebGPU is available: type "navigator.gpu" in console
+2. On integrated GPUs, large models (Phi-3-mini 2.2GB) may time out
+3. Try exporting with TinyLlama (700 MB) to test GPU loading
+4. Check GPU memory usage in task manager / Activity Monitor
+
+Problem: WebLLM makes network requests even after import
+Solution: The Cache API was not pre-populated correctly. Open DevTools >
+Application > Cache Storage and check for these buckets:
+  - webllm/config (should contain mlc-chat-config.json, tokenizer files)
+  - webllm/model (should contain tensor-cache.json and params_shard_*.bin files)
+  - webllm/wasm (should contain .wasm files)
+If these are missing or empty, the unzip-worker did not write them. Check console
+for Cache API errors. Storage quota may also be a factor.
+
+Problem: Chat responses are not about the imported documents
+Solution:
+1. Open the exported zip and inspect manifest.json — check system_instructions field
+2. Check that Orama search is working: each assistant response should show source
+   citations below it. If no sources appear, hybrid search may have failed.
+3. Re-export with more specific system instructions in the export app textarea.
+
+Problem: OPFS errors / "Failed to write file"
+Solution:
+1. Check storage quota: run navigator.storage.estimate() in console
+2. Clear old data: DevTools > Application > Storage > Clear site data
+3. OPFS requires a secure context (localhost or https)
+
+Problem: "Clear knowledge base" does not work
+Solution: The clear function removes OPFS data and Cache API entries for the
+current manifest_hash. If it appears to do nothing, check console for errors.
+You can manually clear all data via DevTools > Application > Storage > Clear site data.
+
+
+BROWSER COMPATIBILITY
+---------------------
+
+Required browser: Chrome 113+ or Edge 113+
+Required features:
+  - WebGPU (navigator.gpu)
+  - File System Access API (showSaveFilePicker, OPFS)
+  - SharedArrayBuffer (requires cross-origin isolation)
+  - Web Workers with module support
+  - ReadableStream transferable (Chrome 102+)
+  - Cache API
+
+Firefox: WebGPU is behind a flag — not recommended for production use.
+Safari: WebGPU available in Safari 18+ but File System Access API is limited.
+Mobile: WebGPU not reliably available — desktop only.
+
+
+PERFORMANCE NOTES
+-----------------
+
+Export time: 5–20 minutes depending on document count and model size.
+Import time (extraction): 2–10 minutes for a 1.4 GB zip.
+GPU upload time: 30 seconds – 3 minutes depending on model and GPU.
+Chat response time: 1–10 seconds per response depending on model and GPU.
+
+Peak memory during export: ~50 MB (one model shard at a time).
+Peak memory during import: ~50 MB (one zip entry at a time).
+GPU VRAM required: 700 MB (TinyLlama), 1.4 GB (Gemma 2B), 2.2 GB (Phi-3-mini).

@@ -30,8 +30,11 @@ self.onmessage = async (event: MessageEvent<InMsg>) => {
       // Must happen before pipeline() so ort-web picks it up during InferenceSession.create().
       const onnxWasm = (env.backends?.onnx as any)?.wasm
       if (onnxWasm) {
-        onnxWasm.wasmPaths = '/ort-wasm/'
-        console.log('[EmbedQueryWorker] ONNX WASM path → /ort-wasm/')
+        // import.meta.env.BASE_URL is '/' in dev and '/offline-llm-knowledge-system/import/' in prod.
+        // This is the correct base regardless of where the worker script is located.
+        const wasmPath = import.meta.env.BASE_URL + 'ort-wasm/'
+        onnxWasm.wasmPaths = wasmPath
+        console.log('[EmbedQueryWorker] ONNX WASM path →', wasmPath)
       }
       // Model files come from transformers-cache (pre-populated by unzip-worker).
       // No network requests needed after first import.

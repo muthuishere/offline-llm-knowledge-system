@@ -24555,7 +24555,11 @@ ${s}${a}` + n.repeat(e) + `${s}`, o;
         if (t.type === "INIT") {
             try {
                 const r = we.backends?.onnx?.wasm;
-                r && (r.wasmPaths = "/ort-wasm/", console.log("[EmbedQueryWorker] ONNX WASM path → /ort-wasm/")), $o = await TN("feature-extraction", "Xenova/bge-small-en-v1.5"), self.postMessage({
+                if (r) {
+                    const s = "/offline-llm-knowledge-system/import/ort-wasm/";
+                    r.wasmPaths = s, console.log("[EmbedQueryWorker] ONNX WASM path →", s);
+                }
+                $o = await TN("feature-extraction", "Xenova/bge-small-en-v1.5"), self.postMessage({
                     type: "READY"
                 });
             } catch (r) {
