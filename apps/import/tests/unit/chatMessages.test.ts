@@ -8,6 +8,7 @@ const manifest: Manifest = {
   chat_model: {
     name: 'test-model',
     size_bytes: 123,
+    engine: 'webllm' as const,
     model_url: 'https://example.com/model/',
     wasm_url: 'https://example.com/model.wasm',
   },

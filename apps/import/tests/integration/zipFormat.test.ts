@@ -16,7 +16,7 @@ describe('Zip format — fflate compress/decompress', () => {
     const manifest = {
       version: '1.0',
       created_at: '2026-04-04T10:00:00Z',
-      chat_model: { name: 'gemma-2-2b-it-q4f16_1', size_bytes: 1_400_000_000 },
+      chat_model: { name: 'gemma-2-2b-it-q4f16_1', size_bytes: 1_400_000_000, engine: 'webllm' as const, model_url: '', wasm_url: '' },
       embed_model: { name: 'bge-small-en-v1.5-q8', dimensions: 384, path: 'embed-model/bge-small-en-v1.5-q8.onnx' },
       chunking: { chunk_size: 512, chunk_overlap: 64 },
       sources: [{ name: 'test.txt', type: 'txt', chunks: 2, checksum: 'sha256:abc' }],

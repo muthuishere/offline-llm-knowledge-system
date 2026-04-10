@@ -17,6 +17,7 @@
     "@huggingface/transformers": "^4.0.1",
     "@mlc-ai/web-llm": "^0.2.79",
     "@orama/orama": "^3.0.0",
+    "@wllama/wllama": "^2.3.7",
     "coi-serviceworker": "^0.1.7",
     "fflate": "^0.8.2",
     "mammoth": "^1.8.0",
