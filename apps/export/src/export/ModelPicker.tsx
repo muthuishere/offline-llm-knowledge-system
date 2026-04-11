@@ -33,19 +33,35 @@ export default function ModelPicker({ value, onChange, estimatedSize }: ModelPic
     detectWebGPU().then(setHasWebGPU)
   }, [])
 
+  // Filter out GPU models when WebGPU is not available
+  const visibleModels = hasWebGPU === false
+    ? CHAT_MODELS.filter(m => m.tag === 'CPU')
+    : CHAT_MODELS
+
+  // Auto-select first CPU model if the current selection is a hidden GPU model
+  useEffect(() => {
+    if (hasWebGPU === false) {
+      const currentModel = CHAT_MODELS.find(m => m.id === value)
+      if (currentModel?.tag === 'GPU') {
+        const firstCPU = CHAT_MODELS.find(m => m.tag === 'CPU')
+        if (firstCPU) onChange(firstCPU.id as ChatModelId)
+      }
+    }
+  }, [hasWebGPU, value, onChange])
+
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Chat Model</h2>
 
       {hasWebGPU === false && (
         <p style={styles.gpuWarning}>
-          WebGPU not detected — GPU models won't work on the target machine
-          if it also lacks WebGPU. CPU models work everywhere.
+          WebGPU not available — only CPU models are shown.
+          CPU models work on any device.
         </p>
       )}
 
       <div style={styles.optionsList}>
-        {CHAT_MODELS.map(model => (
+        {visibleModels.map(model => (
           <label key={model.id} style={styles.option(value === model.id)}>
             <input
               type="radio"
