@@ -15,14 +15,19 @@ export interface SourceMeta {
   checksum: string
 }
 
+export type InferenceEngine = 'webllm' | 'wllama'
+
 export interface Manifest {
   version: string
   created_at: string
   chat_model: {
     name: string
     size_bytes: number
-    model_url: string   // HuggingFace resolve/main/ URL — WebLLM cache key base
-    wasm_url: string    // GitHub raw URL for compiled WebGPU kernel
+    engine: InferenceEngine   // 'webllm' = WebGPU, 'wllama' = CPU/WASM
+    model_url: string         // WebLLM: HuggingFace resolve/main/ URL — cache key base
+                              // Wllama: HuggingFace URL to GGUF file
+    wasm_url: string          // WebLLM: GitHub raw URL for compiled WebGPU kernel
+                              // Wllama: empty string (runtime ships its own WASM)
   }
   embed_model: { name: string; dimensions: number; path: string }
   chunking: { chunk_size: number; chunk_overlap: number }

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { CHAT_MODELS, type ChatModelId } from '../types'
 
 interface ModelPickerProps {
@@ -14,10 +15,35 @@ function formatBytes(bytes: number): string {
   return `~${mb.toFixed(0)} MB`
 }
 
+async function detectWebGPU(): Promise<boolean> {
+  try {
+    const nav = navigator as any
+    if (!nav.gpu) return false
+    const adapter = await nav.gpu.requestAdapter()
+    return adapter !== null
+  } catch {
+    return false
+  }
+}
+
 export default function ModelPicker({ value, onChange, estimatedSize }: ModelPickerProps) {
+  const [hasWebGPU, setHasWebGPU] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    detectWebGPU().then(setHasWebGPU)
+  }, [])
+
   return (
     <div style={styles.container}>
       <h2 style={styles.heading}>Chat Model</h2>
+
+      {hasWebGPU === false && (
+        <p style={styles.gpuWarning}>
+          WebGPU not detected — GPU models won't work on the target machine
+          if it also lacks WebGPU. CPU models work everywhere.
+        </p>
+      )}
+
       <div style={styles.optionsList}>
         {CHAT_MODELS.map(model => (
           <label key={model.id} style={styles.option(value === model.id)}>
@@ -29,7 +55,10 @@ export default function ModelPicker({ value, onChange, estimatedSize }: ModelPic
               onChange={() => onChange(model.id as ChatModelId)}
               style={styles.radio}
             />
-            <span style={styles.label}>{model.label}</span>
+            <span style={styles.label}>
+              <span style={styles.tag(model.tag)}>{model.tag}</span>
+              {model.label}
+            </span>
           </label>
         ))}
       </div>
@@ -56,6 +85,16 @@ const styles = {
     textTransform: 'uppercase' as const,
     letterSpacing: '0.06em',
   },
+  gpuWarning: {
+    fontSize: 13,
+    color: '#f59e0b',
+    background: 'rgba(245,158,11,0.1)',
+    border: '1px solid rgba(245,158,11,0.3)',
+    borderRadius: 8,
+    padding: '8px 12px',
+    margin: 0,
+    lineHeight: 1.5,
+  } as React.CSSProperties,
   optionsList: {
     display: 'flex',
     flexDirection: 'column' as const,
@@ -81,7 +120,21 @@ const styles = {
   label: {
     color: 'var(--text)',
     fontSize: 14,
+    display: 'flex' as const,
+    alignItems: 'center' as const,
+    gap: 8,
   },
+  tag: (type: string): React.CSSProperties => ({
+    display: 'inline-block',
+    fontSize: 10,
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    padding: '2px 6px',
+    borderRadius: 4,
+    background: type === 'GPU' ? 'rgba(99,102,241,0.15)' : 'rgba(34,197,94,0.15)',
+    color: type === 'GPU' ? '#818cf8' : '#4ade80',
+    flexShrink: 0,
+  }),
   sizeHint: {
     fontSize: 13,
     color: 'var(--text)',

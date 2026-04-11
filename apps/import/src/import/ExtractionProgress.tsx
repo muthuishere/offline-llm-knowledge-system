@@ -77,7 +77,7 @@ export default function ExtractionProgress({ stage, progress, error }: Extractio
 
       {stage === 'loading-model' && (
         <p style={{ color: 'var(--muted)', fontSize: 12, textAlign: 'center' }}>
-          Uploading model weights to GPU — this may take a moment.
+          Loading model weights — this may take a moment.
         </p>
       )}
     </div>

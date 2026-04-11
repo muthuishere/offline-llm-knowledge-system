@@ -47,8 +47,18 @@ function concatU8(chunks: Uint8Array[]): Uint8Array {
 const TRANSFORMERS_CACHE = 'transformers-cache'
 
 async function cacheEntry(name: string, data: Uint8Array, mf: Manifest): Promise<void> {
-  const { model_url: modelUrl, wasm_url: wasmUrl } = mf.chat_model
+  const { model_url: modelUrl, wasm_url: wasmUrl, engine } = mf.chat_model
 
+  if (engine === 'wllama') {
+    // Wllama (CPU): GGUF file goes to OPFS, not Cache API
+    if (name.startsWith('model/')) {
+      await writeFile(mf.manifest_hash, name, data)
+    }
+    // No wasm/ entry for wllama — it ships its own runtime
+    return
+  }
+
+  // WebLLM (GPU): model files go to Cache API
   if (name.startsWith('model/')) {
     const filename = name.slice('model/'.length)
     const url = new URL(filename, modelUrl).href
