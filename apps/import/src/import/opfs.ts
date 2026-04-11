@@ -78,6 +78,34 @@ export async function readFile(manifestHash: string, path: string): Promise<Uint
   return new Uint8Array(buffer)
 }
 
+/** Read a file from OPFS as a Blob (avoids copying large files into JS heap) */
+export async function readFileAsBlob(manifestHash: string, path: string): Promise<Blob> {
+  const dir = await getKnowledgeBaseDir(manifestHash)
+  const parts = path.split('/')
+  const fileName = parts.pop()!
+  let parentDir = dir
+  for (const part of parts) {
+    parentDir = await parentDir.getDirectoryHandle(part)
+  }
+  const fileHandle = await parentDir.getFileHandle(fileName)
+  return fileHandle.getFile()
+}
+
+/** List files under a directory in OPFS */
+export async function listDir(manifestHash: string, dir: string): Promise<string[]> {
+  const kbDir = await getKnowledgeBaseDir(manifestHash)
+  const parts = dir.split('/').filter(Boolean)
+  let current = kbDir
+  for (const part of parts) {
+    current = await current.getDirectoryHandle(part)
+  }
+  const names: string[] = []
+  for await (const [name] of current as any) {
+    names.push(name)
+  }
+  return names
+}
+
 export async function markExtractionComplete(manifestHash: string): Promise<void> {
   const dir = await getKnowledgeBaseDir(manifestHash)
   const fileHandle = await dir.getFileHandle('extraction_complete', { create: true })

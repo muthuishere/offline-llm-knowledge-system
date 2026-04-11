@@ -47,11 +47,46 @@ function onnxWasmPlugin(): Plugin {
   }
 }
 
+/**
+ * Serves @wllama/wllama WASM files from node_modules at /wllama-wasm/ so the
+ * wllama CPU inference engine can load them locally without CDN.
+ */
+function wllamaWasmPlugin(): Plugin {
+  const baseDir = fileURLToPath(new URL('./node_modules/@wllama/wllama/esm', import.meta.url))
+  const files = [
+    { route: 'single-thread/wllama.wasm', src: 'single-thread/wllama.wasm' },
+    { route: 'multi-thread/wllama.wasm', src: 'multi-thread/wllama.wasm' },
+  ]
+
+  return {
+    name: 'wllama-wasm',
+    configureServer(server) {
+      server.middlewares.use('/wllama-wasm', (req, res, next) => {
+        const filename = (req.url ?? '').replace(/^\//, '').replace(/\?.*$/, '')
+        if (!filename) { next(); return }
+        const filepath = join(baseDir, filename)
+        if (!filepath.startsWith(baseDir)) { next(); return }
+        if (!existsSync(filepath)) { next(); return }
+        res.setHeader('Content-Type', 'application/wasm')
+        createReadStream(filepath).pipe(res as any)
+      })
+    },
+    generateBundle() {
+      for (const { route, src } of files) {
+        const srcPath = join(baseDir, src)
+        if (existsSync(srcPath)) {
+          this.emitFile({ type: 'asset', fileName: `wllama-wasm/${route}`, source: readFileSync(srcPath) })
+        }
+      }
+    },
+  }
+}
+
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/offline-llm-knowledge-system/import/' : '/',
   build: { outDir: '../../docs/import', emptyOutDir: true },
   server: { port: 5199 },
-  plugins: [react(), wasm(), topLevelAwait(), onnxWasmPlugin()],
+  plugins: [react(), wasm(), topLevelAwait(), onnxWasmPlugin(), wllamaWasmPlugin()],
   optimizeDeps: {
     // web-llm manages its own wasm shards and must not be pre-bundled
     exclude: ['@mlc-ai/web-llm'],

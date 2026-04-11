@@ -9,6 +9,7 @@ import {
   EMBED_MODEL,
   CHUNK_SIZE,
   CHUNK_OVERLAP,
+  getChatModel,
 } from '../types'
 import { chunkText } from '../lib/chunking'
 import { buildGraphEdges } from '../lib/graphBuilder'
@@ -65,6 +66,13 @@ async function sha256(data: string | Uint8Array): Promise<string> {
 // ---------------------------------------------------------------------------
 
 function getModelUrl(modelId: ChatModelId): string {
+  const model = getChatModel(modelId)
+  if (model.engine === 'wllama') {
+    // GGUF model: URL points to single .gguf file on HuggingFace
+    const gguf = (model as any).gguf as { hfModel: string; fileName: string }
+    return `https://huggingface.co/${gguf.hfModel}/resolve/main/${gguf.fileName}`
+  }
+  // WebLLM model: resolve from prebuiltAppConfig
   const record = prebuiltAppConfig.model_list.find(m => m.model_id === modelId)
   if (!record) throw new Error(`Model not found in prebuiltAppConfig: ${modelId}`)
   const base = record.model.endsWith('/') ? record.model : record.model + '/'
@@ -72,6 +80,10 @@ function getModelUrl(modelId: ChatModelId): string {
 }
 
 function getWasmUrl(modelId: ChatModelId): string {
+  const model = getChatModel(modelId)
+  if (model.engine === 'wllama') {
+    return '' // wllama ships its own WASM runtime
+  }
   const record = prebuiltAppConfig.model_list.find(m => m.model_id === modelId)
   if (!record) throw new Error(`Model not found in prebuiltAppConfig: ${modelId}`)
   return record.model_lib as string
@@ -286,6 +298,7 @@ export function useExportPipeline() {
       setProgress(70)
 
       // ── Step 5: Build manifest ──────────────────────────────────────────────
+      const modelDef = getChatModel(modelId)
       const modelUrl = getModelUrl(modelId)
       const wasmUrl = getWasmUrl(modelId)
       const modelSizeBytes = estimateModelSize(modelId)
@@ -296,6 +309,7 @@ export function useExportPipeline() {
         chat_model: {
           name: modelId,
           size_bytes: modelSizeBytes,
+          engine: modelDef.engine,
           model_url: modelUrl,
           wasm_url: wasmUrl,
         },
@@ -388,7 +402,7 @@ export function useExportPipeline() {
         const kbTransfers = kbEntries.map(e => e.data.buffer as ArrayBuffer)
         const cacheTransfers = embedCacheEntries.map(e => e.data.buffer as ArrayBuffer)
         zipWorker.postMessage(
-          { type: 'COMPRESS', id: compressId, kbEntries, modelUrl, wasmUrl, embedCacheEntries },
+          { type: 'COMPRESS', id: compressId, kbEntries, modelUrl, wasmUrl, engine: modelDef.engine, embedCacheEntries },
           [...kbTransfers, ...cacheTransfers],
         )
       })
@@ -419,6 +433,16 @@ export function useExportPipeline() {
 // ---------------------------------------------------------------------------
 
 function estimateModelSize(modelId: ChatModelId): number {
+  const model = getChatModel(modelId)
+  if (model.engine === 'wllama') {
+    // GGUF model size estimates (approximate download sizes)
+    const ggufSizes: Record<string, number> = {
+      'gemma-2-2b-it-Q4_K_M-GGUF': 1500,
+      'TinyLlama-1.1B-Chat-v1.0-Q4_K_M-GGUF': 670,
+    }
+    const mb = ggufSizes[modelId] ?? 1000
+    return Math.round(mb * 1024 * 1024)
+  }
   const record = prebuiltAppConfig.model_list.find(m => m.model_id === modelId)
   const mb = (record as any)?.vram_required_MB ?? 1400
   return Math.round(mb * 1024 * 1024)

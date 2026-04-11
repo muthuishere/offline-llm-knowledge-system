@@ -8,8 +8,9 @@ type InMsg = {
   type: 'COMPRESS'
   id: string
   kbEntries: Array<{ path: string; data: Uint8Array }>
-  modelUrl: string   // e.g. https://huggingface.co/.../resolve/main/
-  wasmUrl: string    // full URL to compiled .wasm
+  modelUrl: string   // WebLLM: https://huggingface.co/.../resolve/main/  |  Wllama: full URL to .gguf
+  wasmUrl: string    // full URL to compiled .wasm (empty for wllama)
+  engine: 'webllm' | 'wllama'  // inference engine type
   embedCacheEntries?: Array<{ url: string; data: Uint8Array }>  // captured from transformers-cache
 }
 
@@ -85,7 +86,7 @@ self.onmessage = async (event: MessageEvent<InMsg>) => {
   const msg = event.data
   if (msg.type !== 'COMPRESS') return
 
-  const { id, kbEntries, modelUrl, wasmUrl, embedCacheEntries = [] } = msg
+  const { id, kbEntries, modelUrl, wasmUrl, engine, embedCacheEntries = [] } = msg
 
   try {
     const zip = new Zip((err, chunk, final) => {
@@ -104,54 +105,64 @@ self.onmessage = async (event: MessageEvent<InMsg>) => {
       addEntry(zip, entry.path, entry.data)
     }
 
-    // ── Step 2: Model config + tokenizer files ───────────────────────────────
-    send({ type: 'ZIP_PROGRESS', id, percent: 77, label: 'Fetching model config...' })
-    for (const name of ['mlc-chat-config.json', 'tokenizer.json', 'tokenizer_config.json', 'tokenizer.model']) {
-      try {
-        const resp = await fetch(modelUrl + name)
-        if (!resp.ok) {
-          console.warn(`[ZipWorker] ${name}: HTTP ${resp.status}, skipping`)
-          continue
+    if (engine === 'wllama') {
+      // ── GGUF model: single file stream ──────────────────────────────────────
+      send({ type: 'ZIP_PROGRESS', id, percent: 77, label: 'Fetching GGUF model...' })
+      const ggufFilename = modelUrl.split('/').pop()!
+      console.log(`[ZipWorker] Streaming GGUF: ${modelUrl}`)
+      await streamFetch(zip, `model/${ggufFilename}`, modelUrl)
+      send({ type: 'ZIP_PROGRESS', id, percent: 94, label: 'GGUF model fetched' })
+    } else {
+      // ── WebLLM model: config + tokenizer + shards + WASM kernel ─────────────
+      // Step 2: Model config + tokenizer files
+      send({ type: 'ZIP_PROGRESS', id, percent: 77, label: 'Fetching model config...' })
+      for (const name of ['mlc-chat-config.json', 'tokenizer.json', 'tokenizer_config.json', 'tokenizer.model']) {
+        try {
+          const resp = await fetch(modelUrl + name)
+          if (!resp.ok) {
+            console.warn(`[ZipWorker] ${name}: HTTP ${resp.status}, skipping`)
+            continue
+          }
+          const data = new Uint8Array(await resp.arrayBuffer())
+          const f = new ZipDeflate(`model/${name}`, { level: 6 })
+          zip.add(f)
+          f.push(data, true)
+          console.log(`[ZipWorker] Config fetched: ${name}`)
+        } catch (e) {
+          console.warn(`[ZipWorker] ${name} not available, skipping`)
         }
-        const data = new Uint8Array(await resp.arrayBuffer())
-        const f = new ZipDeflate(`model/${name}`, { level: 6 })
-        zip.add(f)
-        f.push(data, true)
-        console.log(`[ZipWorker] Config fetched: ${name}`)
-      } catch (e) {
-        console.warn(`[ZipWorker] ${name} not available, skipping`)
       }
+
+      // Step 3: tensor-cache.json — discovers the actual shard filenames
+      send({ type: 'ZIP_PROGRESS', id, percent: 80, label: 'Fetching tensor-cache.json...' })
+      console.log(`[ZipWorker] Fetching tensor-cache.json from ${modelUrl}`)
+      const tcResp = await fetch(modelUrl + 'tensor-cache.json')
+      if (!tcResp.ok) throw new Error(`tensor-cache.json: HTTP ${tcResp.status}`)
+      const tcData = new Uint8Array(await tcResp.arrayBuffer())
+      const tcEntry = new ZipDeflate('model/tensor-cache.json', { level: 6 })
+      zip.add(tcEntry)
+      tcEntry.push(tcData, true)
+
+      const tensorCache = JSON.parse(new TextDecoder().decode(tcData))
+      const records: Array<{ dataPath: string }> = tensorCache.records ?? []
+      console.log(`[ZipWorker] ${records.length} shards to fetch`)
+
+      // Step 4: Weight shards — streamed from HuggingFace, never fully in RAM
+      for (let i = 0; i < records.length; i++) {
+        const { dataPath } = records[i]
+        const shardUrl = new URL(dataPath, modelUrl).href
+        const pct = 80 + Math.round(((i + 1) / (records.length + 1)) * 13)
+        send({ type: 'ZIP_PROGRESS', id, percent: pct, label: `Shard ${i + 1}/${records.length}: ${dataPath}` })
+        console.log(`[ZipWorker] Shard ${i + 1}/${records.length}: ${dataPath}`)
+        await streamFetch(zip, `model/${dataPath}`, shardUrl)
+      }
+
+      // Step 5: Compiled WebGPU WASM kernel
+      send({ type: 'ZIP_PROGRESS', id, percent: 94, label: 'Fetching WASM kernel...' })
+      const wasmFilename = wasmUrl.split('/').pop()!
+      console.log(`[ZipWorker] WASM: ${wasmUrl}`)
+      await streamFetch(zip, `wasm/${wasmFilename}`, wasmUrl)
     }
-
-    // ── Step 3: tensor-cache.json — discovers the actual shard filenames ─────
-    send({ type: 'ZIP_PROGRESS', id, percent: 80, label: 'Fetching tensor-cache.json...' })
-    console.log(`[ZipWorker] Fetching tensor-cache.json from ${modelUrl}`)
-    const tcResp = await fetch(modelUrl + 'tensor-cache.json')
-    if (!tcResp.ok) throw new Error(`tensor-cache.json: HTTP ${tcResp.status}`)
-    const tcData = new Uint8Array(await tcResp.arrayBuffer())
-    const tcEntry = new ZipDeflate('model/tensor-cache.json', { level: 6 })
-    zip.add(tcEntry)
-    tcEntry.push(tcData, true)
-
-    const tensorCache = JSON.parse(new TextDecoder().decode(tcData))
-    const records: Array<{ dataPath: string }> = tensorCache.records ?? []
-    console.log(`[ZipWorker] ${records.length} shards to fetch`)
-
-    // ── Step 4: Weight shards — streamed from HuggingFace, never fully in RAM ─
-    for (let i = 0; i < records.length; i++) {
-      const { dataPath } = records[i]
-      const shardUrl = new URL(dataPath, modelUrl).href
-      const pct = 80 + Math.round(((i + 1) / (records.length + 1)) * 13)
-      send({ type: 'ZIP_PROGRESS', id, percent: pct, label: `Shard ${i + 1}/${records.length}: ${dataPath}` })
-      console.log(`[ZipWorker] Shard ${i + 1}/${records.length}: ${dataPath}`)
-      await streamFetch(zip, `model/${dataPath}`, shardUrl)
-    }
-
-    // ── Step 5: Compiled WebGPU WASM kernel ──────────────────────────────────
-    send({ type: 'ZIP_PROGRESS', id, percent: 94, label: 'Fetching WASM kernel...' })
-    const wasmFilename = wasmUrl.split('/').pop()!
-    console.log(`[ZipWorker] WASM: ${wasmUrl}`)
-    await streamFetch(zip, `wasm/${wasmFilename}`, wasmUrl)
 
     // ── Step 6: Embed model cache (captured from transformers-cache in embed-worker) ──
     // Stored as embed-cache/index.json (URL→filename map) + embed-cache/<n>.bin

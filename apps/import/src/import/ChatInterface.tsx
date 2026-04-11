@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect, useMemo } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useWebLLM } from './useWebLLM'
+import { useInference } from './useInference'
 import { useHybridSearch } from './useHybridSearch'
 import { useEmbedWorker } from './useEmbedWorker'
 import { buildChatMessages } from './chatMessages'
@@ -37,7 +37,7 @@ export default function ChatInterface({ oramaDb, manifest, onClear, chunks, grap
   const bottomRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
-  const { engine, loading: modelLoading, loadModel, chat } = useWebLLM()
+  const { engine, loading: modelLoading, engineType, loadModel, chat } = useInference()
   const { search } = useHybridSearch(oramaDb)
   const { embedQuery } = useEmbedWorker()
 
@@ -111,7 +111,7 @@ export default function ChatInterface({ oramaDb, manifest, onClear, chunks, grap
       if (engine && manifest && ragChunks.length > 0) {
         const topSource = ragChunks[0].source
         const contextText = ragChunks.map((c) => c.text).join('\n\n')
-        wikiContent = await fetchWikiPage(topSource, manifest.manifest_hash, engine, contextText)
+        wikiContent = await fetchWikiPage(topSource, manifest.manifest_hash, engine, contextText, engineType)
       }
 
       // Update sources on placeholder (show RAG hits)
@@ -241,11 +241,19 @@ export default function ChatInterface({ oramaDb, manifest, onClear, chunks, grap
       const msgs = buildChatMessages([], query, ragChunksInner, manifest)
       console.log('[kb.ask] messages:', JSON.stringify(msgs, null, 2))
       let output = ''
-      const stream = await engine!.chat.completions.create({ messages: msgs, stream: true, max_tokens: 512 })
-      for await (const chunk of stream) {
-        const t = chunk.choices[0]?.delta?.content ?? ''
-        if (t) output += t
+
+      if (engineType === 'wllama') {
+        // Wllama: use chat() which handles streaming
+        await chat(msgs, (token) => { output += token })
+      } else {
+        // WebLLM: OpenAI-compatible streaming
+        const stream = await engine!.chat.completions.create({ messages: msgs, stream: true, max_tokens: 512 })
+        for await (const chunk of stream) {
+          const t = chunk.choices[0]?.delta?.content ?? ''
+          if (t) output += t
+        }
       }
+
       console.timeEnd('[kb.ask] total')
       console.log('[kb.ask] answer:', output)
       return output
@@ -315,7 +323,7 @@ export default function ChatInterface({ oramaDb, manifest, onClear, chunks, grap
       '\n  kb.batch(["q1","q2"])       → run multiple questions',
       '\n  askchat("question")         → alias for kb.ask()',
     )
-  }, [engine, oramaDb, manifest, embedQuery, search])
+  }, [engine, oramaDb, manifest, embedQuery, search, engineType, chat])
 
   return (
     <div
@@ -349,7 +357,11 @@ export default function ChatInterface({ oramaDb, manifest, onClear, chunks, grap
             }}
           />
           <span style={{ fontWeight: 600, fontSize: 15 }}>
-            {modelReady ? 'Chat ready' : modelLoading ? 'Uploading to GPU...' : 'Initializing'}
+            {modelReady
+              ? `Chat ready${engineType === 'wllama' ? ' (CPU)' : engineType === 'webllm' ? ' (GPU)' : ''}`
+              : modelLoading
+                ? engineType === 'wllama' ? 'Loading model (CPU)...' : 'Uploading to GPU...'
+                : 'Initializing'}
           </span>
           {modelError && (
             <span style={{ color: 'var(--danger)', fontSize: 12 }}>{modelError}</span>

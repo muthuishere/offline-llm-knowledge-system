@@ -1,4 +1,5 @@
 import { readFile, writeFile } from './opfs'
+import type { InferenceEngine } from '../types'
 
 function slugify(source: string): string {
   return source.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase().slice(0, 80)
@@ -19,6 +20,7 @@ export async function fetchWikiPage(
   manifestHash: string,
   engine: any,
   contextText: string,
+  engineType?: InferenceEngine | null,
 ): Promise<string> {
   const slug = slugify(source)
   const wikiPath = `wiki/${slug}.md`
@@ -42,12 +44,22 @@ export async function fetchWikiPage(
 
   let wikiContent = ''
   try {
-    const response = await engine.chat.completions.create({
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 200,
-      temperature: 0.1,
-    })
-    wikiContent = response.choices[0]?.message?.content?.trim() ?? ''
+    if (engineType === 'wllama') {
+      // Wllama: use createChatCompletion directly
+      wikiContent = await engine.createChatCompletion(
+        [{ role: 'user', content: prompt }],
+        { nPredict: 200, sampling: { temp: 0.1 } },
+      )
+      wikiContent = (wikiContent || '').trim()
+    } else {
+      // WebLLM: OpenAI-compatible API
+      const response = await engine.chat.completions.create({
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 200,
+        temperature: 0.1,
+      })
+      wikiContent = response.choices[0]?.message?.content?.trim() ?? ''
+    }
   } catch (err) {
     console.warn('[wikiCache] synthesis failed:', err)
     return ''
