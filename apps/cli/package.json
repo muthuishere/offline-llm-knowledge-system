@@ -1,0 +1,26 @@
+{
+  "name": "@kb/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "kb": "./bin/kb.mjs"
+  },
+  "scripts": {
+    "kb": "node ./bin/kb.mjs",
+    "test:unit": "vitest run tests"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.0.1",
+    "@orama/orama": "^3.0.0",
+    "fflate": "^0.8.2",
+    "mammoth": "^1.8.0",
+    "pdfjs-dist": "^4.9.155",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
