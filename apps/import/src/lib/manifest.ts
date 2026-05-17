@@ -93,6 +93,18 @@ export function parseManifest(json: unknown): Manifest {
     throw new Error('Manifest missing required field: manifest_hash (must be a non-empty string)')
   }
 
+  // skills — backward compatible: absent in pre-v1.1 manifests, default to []
+  if (obj['skills'] === undefined) {
+    obj['skills'] = []
+  } else if (!Array.isArray(obj['skills'])) {
+    throw new Error('Manifest.skills must be an array if present')
+  }
+
+  // chat_model.supports_tools — backward compatible: default false for old manifests
+  if (chatModel['supports_tools'] === undefined) {
+    chatModel['supports_tools'] = false
+  }
+
   return obj as unknown as Manifest
 }
 

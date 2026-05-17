@@ -109,10 +109,11 @@ describe('buildManifestHash', () => {
   const baseManifest = (): Omit<Manifest, 'manifest_hash'> => ({
     version: '1.0',
     created_at: '2026-04-04T10:00:00Z',
-    chat_model: { name: 'gemma-2-2b-it-q4f16_1', size_bytes: 1_400_000_000, engine: 'webllm' as const, model_url: '', wasm_url: '' },
+    chat_model: { name: 'Hermes-3-Llama-3.2-3B-q4f16_1-MLC', size_bytes: 1_800_000_000, engine: 'webllm' as const, model_url: '', wasm_url: '', supports_tools: true },
     embed_model: { name: 'bge-small-en-v1.5-q8', dimensions: 384, path: 'embed-model/bge-small-en-v1.5-q8.onnx' },
     chunking: { chunk_size: 512, chunk_overlap: 64 },
     sources: [{ name: 'doc.txt', type: 'txt', chunks: 10, checksum: 'sha256:abc123' }],
+    skills: [],
     total_chunks: 10,
   })
 
@@ -137,7 +138,7 @@ describe('buildManifestHash', () => {
 
   it('changing chat_model name changes the hash', async () => {
     const m1 = baseManifest()
-    const m2 = { ...baseManifest(), chat_model: { ...m1.chat_model, name: 'Phi-3-mini-4k-instruct-q4f16_1' } }
+    const m2 = { ...baseManifest(), chat_model: { ...m1.chat_model, name: 'Llama-3.1-8B-Instruct-q4f16_1-MLC' } }
     const h1 = await buildManifestHash(m1)
     const h2 = await buildManifestHash(m2)
     expect(h1).not.toBe(h2)

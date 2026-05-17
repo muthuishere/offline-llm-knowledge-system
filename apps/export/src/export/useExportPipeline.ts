@@ -312,6 +312,7 @@ export function useExportPipeline() {
           engine: modelDef.engine,
           model_url: modelUrl,
           wasm_url: wasmUrl,
+          supports_tools: true,  // every entry in CHAT_MODELS is tool-trained
         },
         embed_model: {
           name: EMBED_MODEL.name,
@@ -320,6 +321,7 @@ export function useExportPipeline() {
         },
         chunking: { chunk_size: CHUNK_SIZE, chunk_overlap: CHUNK_OVERLAP },
         sources: sourceMetas,
+        skills: [],  // skill bundling lands in a follow-up commit
         total_chunks: allChunks.length,
         ...(systemInstructions ? { system_instructions: systemInstructions } : {}),
       }
@@ -435,12 +437,11 @@ export function useExportPipeline() {
 function estimateModelSize(modelId: ChatModelId): number {
   const model = getChatModel(modelId)
   if (model.engine === 'wllama') {
-    // GGUF model size estimates (approximate download sizes)
+    // GGUF model size estimates (approximate download sizes, MB)
     const ggufSizes: Record<string, number> = {
-      'gemma-2-2b-it-Q4_K_M-GGUF': 1500,
-      'TinyLlama-1.1B-Chat-v1.0-Q4_K_M-GGUF': 670,
+      'Llama-3.2-3B-Instruct-Q4_K_M-GGUF': 2020,
     }
-    const mb = ggufSizes[modelId] ?? 1000
+    const mb = ggufSizes[modelId] ?? 2000
     return Math.round(mb * 1024 * 1024)
   }
   const record = prebuiltAppConfig.model_list.find(m => m.model_id === modelId)
